@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'CairoWebFont';
+    src: url('../fonts/ArbFONTS-Cairo-Regular-1.ttf') format('ttf'),
+    url('../fonts/ArbFONTS-Cairo-Regular-1.ttf') format('truetype');
+}
+
+body,h1,h2,h3,h4,h5,h6 {
+    font-family: 'CairoWebFont', sans-serif !important;
+}

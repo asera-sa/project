@@ -1,0 +1,75 @@
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<title>wedding hall</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="css/images/favicon.ico"> 
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<!-- START PAGE SOURCE -->
+<div id="header">
+  <div class="shell">
+    <h1 id="logo" class="notext"><a href="#">أفـراحنـا - عالم من الخيارات الاحتفالية</a></h1>
+    <div id="navigation">
+      <ul>
+	  <b>
+         <li><a href="canceled.php">الحجوزات الملغية</a></li>
+       <li><a href="hall.php">قاعات الأفراح</a>
+		 <li><a href="aboutus.php">من نحن </a></li>
+        <li><a href="advertising.php"  class="active" >انضم لنا</a>
+          <div class="dd-holder">
+            <div class="dd-t"></div>
+            <div class="dd">
+              <ul>
+                <li><a href="advertising.php">تسجيل الدخول</a></li>
+                <li><a href="advertising.php">إنشاء حساب</a></li>
+                <li><a href="advertising.php">نسيت كلمة المرور</a></li>
+              </ul>
+            </div>
+            <div class="dd-b"></div>
+          </div>
+        </li>
+        <li><a href="index.php" >الصفحة الرئيسية</a></li>
+		</b>
+      </ul>
+    </div>
+  </div>
+</div>
+
+ <div class="container">
+
+<div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form role="form">
+			<fieldset>
+			
+				<h2 dir="rtl">تسجيل الدخول</h2>
+				<hr class="colorgraph">
+				<div class="form-group">
+                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="البريد الإلكتروني">
+				</div>
+				<div class="form-group">
+                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="كلمـة السر">
+				</div>
+				<span class="button-checkbox">
+              <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+					<br>
+					<a href="" class="btn btn-link pull-right">نسيت كلمة المرور</a>
+				</span>
+				<hr class="colorgraph">
+				<div class="row">
+				</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a href="" class="btn btn-lg btn-primary btn-block">إنشاء حساب</a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+                        <input type="submit" class="btn btn-lg btn-success btn-block" value="تسجيل دخول">
+						
+				</div>
+			</fieldset>
+		</form>
+	</div>
