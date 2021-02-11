@@ -68,8 +68,7 @@
 												<th  class="border-bottom-0"> # </th>
 												<th  class="border-bottom-0"> وقت النشر </th>	
                                                 <th  class="border-bottom-0">  عنوان </th>
-												<th  class="border-bottom-0"> محتوى </th>	
-											    <th></th>																							</tr>
+											    <th></th>																						
 											</thead>
 											<tbody>
 												@foreach ($news as $index=>$item) 												
@@ -77,7 +76,6 @@
 													<td>{{++$index}}</td>
 													<td>{{$item->created_at}}</td>
 													<td>{{$item->subject}}</td>
-													<td>{{$item->content}}</td>
 													<td>
                                                         <a href="{{url('admin/news/'.$item->id)}}" class="btn btn-info btn-sm">
                                                             <i class="fas fa-eye"></i>

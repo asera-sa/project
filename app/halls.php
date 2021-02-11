@@ -11,11 +11,10 @@ class halls extends Model
         return $this->hasMany(reservation::class);
     } 
 
-
     public function services()
     {
-        return $this->belongsToMany(services::class)->withPivot('price');
-    } 
+        return $this->hasMany(services::class);
+    }  
 
     public function user()
     {
@@ -26,8 +25,10 @@ class halls extends Model
     {
         return $this->hasMany(occasions::class);
     } 
-    public function city()
+    
+    public function Address()
     {
-        return $this->belongsTo(city::class);
+        // modal, foreign key
+        return $this->belongsTo(Address::class, 'Address_id');
     }  
 }

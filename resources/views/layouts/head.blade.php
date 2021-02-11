@@ -20,7 +20,7 @@
 <link href="{{URL::asset('assets/css-rtl/skin-modes.css')}}" rel="stylesheet">
 
 
-<link rel="stylesheet" href="{{asset('assets/select2/css/select2.min.css')}}">
+{{-- <link rel="stylesheet" href="{{asset('assets/select2/css/select2.min.css')}}"> --}}
 <link rel="stylesheet" href="{{asset('css/custom.css')}}">
 <link rel="stylesheet" href="{{asset('assets/multiselect/css/bootstrap-multiselect.css')}}">
 

@@ -1,4 +1,18 @@
+<style>
+	/* a.side-menu__item:hover , a.slide-item:hover ,.active{
+		-webkit-text-fill-color: #000!important;
+	} */
+	/* span.side-menu__label.text-white:hover
+	{
+		color: #000!important;
+	} */
+	/* i:hover
+	{
+		color: #000!important;
+	} */
+	/* style="background-color:#6d064b; */
 
+</style>
 <!-- main-sidebar -->
 		<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 		<aside class="app-sidebar sidebar-scroll " style="background-color:#394263;">
@@ -174,14 +188,6 @@
 							<li><a class="slide-item  text-white " href="{{ url('/admin/customer') }}"> إدارة العملاء </a></li>
 						</ul>
 					</li>
-					
-        			<li class="slide">
-        		      	<a class="side-menu__item  text-white" href="{{url('admin/report')}}">
-        		    		<i class="fas fa-clipboard-list  ml-3 "></i>
-        		    		<span class="side-menu__label  text-white ">التقارير </span>
-        		    	</a>
-				   </li>
-				  
 				
 				</ul>
 				@endif

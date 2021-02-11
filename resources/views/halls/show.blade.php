@@ -5,6 +5,7 @@
 <br><br>  
         <!-- Main content -->
         <section class="content" >
+            @include('_session')
             @if($halls != null)
             <div class="card card-outline card-primary" dir="rtl">
 
@@ -25,6 +26,16 @@
                         </button>
                     </form>
                     <!-- End of Delete -->
+                    @if($halls->state == 1)
+                        <a href="{{url('admin/halls/'.$halls->id.'/close')}}" class="btn btn-danger pull-left">
+                            <i class="bi bi-x text-white"></i>
+                            إغلاق الصالة   
+                        </a>
+                    @else
+                        <a href="{{url('admin/halls/'.$halls->id.'/open')}}" class="btn btn-success pull-left">
+                            فتح الصالة   
+                        </a>
+                    @endif
                 </div>
                 <!-- /.card-header -->
 
@@ -48,8 +59,7 @@
 
                             <div class="bg-light p-2 " >
                                 <h4>صالة  : {{$halls->name}}</h4>
-                                <p style="font-size: 16px; margin-top:20px" >المدينة :{{$halls->city->name}}</p>
-                                <p style="font-size: 16px; margin-top:20px" >العنوان :{{$halls->address}}</p>
+                                <p style="font-size: 16px; margin-top:20px" >المنطقة :{{$halls->Address->name}}</p>
                                 <p style="font-size: 16px; margin-top:20px" >البريد الإلكتروني :{{$halls->email}}</p>
                                 <p style="font-size: 16px; margin-top:20px" >رقم الهاتف :{{$halls->phone}}</p>
                                 

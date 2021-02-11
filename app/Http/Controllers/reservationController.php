@@ -8,6 +8,7 @@ use App\occasions;
 use App\halls;
 use App\reservation;
 use App\bills;
+use App\services;
 
 class reservationController extends Controller
 {
@@ -17,9 +18,11 @@ class reservationController extends Controller
     
     public function index()
     {
+        // now()->addDays(3) يزد 3 ايام ع اليوم
+        // now()->subDays(3) ينقص 3 ايام ع اليوم
+
         $id = auth()->user()->halls_id ;
         $reservation = reservation::with('customer')->where('halls_id','=',$id)->where('flag','!=',2)->get();
-      //  dd($reservation);
         return view('reservation.index')->with([
             'reservation' => $reservation,
         ]);
@@ -31,15 +34,15 @@ class reservationController extends Controller
         $occasions = occasions::all();
 
         $id=auth()->user()->halls_id;
-        $serviceshalls = halls::with('services')->where('id','=',$id)->first();
+        $services = services::with('halls')->where('halls_id','=',$id)->get();
+       // dd($services);
         return view('reservation.create')->with([
             'customer' => $customer,
             'occasions' => $occasions,
-            'serviceshalls' => $serviceshalls,
+            'services' => $services,
         ]);
     }
-
-   
+  
     public function store(Request $request)
     {
         $reserdate = request("date");
@@ -102,7 +105,6 @@ class reservationController extends Controller
       
     }
 
-   
     public function show($id)
     {
         $i=auth()->user()->halls_id;
@@ -115,8 +117,7 @@ class reservationController extends Controller
         ]);
 
     }
-
-    
+  
     public function edit($id)
     {
         $customer = customer::all();
@@ -124,7 +125,7 @@ class reservationController extends Controller
         $reservation = reservation::find($id);
 
         $i=auth()->user()->halls_id;
-        $serviceshalls = halls::with('services')->where('id','=',$i)->first();
+        $serviceshalls = services::with('halls')->where('halls_id','=',$i)->get();
         $servicesReservation = reservation::with('services')->where('id','=',$id)->first();
         return view('reservation.edit')->with([
             'reservation' => $reservation,
@@ -260,25 +261,4 @@ class reservationController extends Controller
         ]);
     }
 
-    // public function refresh()
-    // {
-    //     //return 't';
-    //     $date =date("Y-m-d");
-    //     $reservation = reservation::where('flag','=',0)->get();
-    //     foreach($reservation as $item)
-    //     {
-    //         $date1=$item->created_at;
-    //         $diff=date_diff($date,$date1);
-    //     if($diffp >= 3)
-    //         {
-    //             $item->delete();
-    //         }
-    //     }
-    //     $id = auth()->user()->halls_id ;
-    //     $reservation = reservation::with('customer')->where('halls_id','=',$id)->where('flag','!=',2)->get();
-    //   //  dd($reservation);
-    //     return view('reservation.index')->with([
-    //         'reservation' => $reservation,
-    //     ]);  
-    // }
 }

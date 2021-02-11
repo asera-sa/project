@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\customer;
 use App\occasions;
 use App\halls;
+use App\services;
 
 
 class customerController extends Controller
@@ -17,6 +18,7 @@ class customerController extends Controller
     public function index()
     {
         $customer = customer::all();
+      //  dd($customer);
       
         return view('customer.index')->with([
             'customer' => $customer,
@@ -39,17 +41,16 @@ class customerController extends Controller
         $customer->phone=request("phone");
         $customer->address=request("address");
         $customer->save();
+       
         $customer = customer::all();
         $occasions = occasions::all();
-
-
         $id=auth()->user()->halls_id;
-        $serviceshalls = halls::with('services')->where('id','=',$id)->first();
+        $services = services::with('halls')->where('halls_id','=',$id)->get();
+
         return view('reservation.create')->with([
             'customer' => $customer,
             'occasions' => $occasions,
-            'serviceshalls' => $serviceshalls,
-
+            'services' => $services,
         ]);
     }
 

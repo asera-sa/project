@@ -15,7 +15,7 @@ class billsController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('check_owner');
+   //     $this->middleware('check_owner');
     }
     
 
@@ -78,7 +78,7 @@ class billsController extends Controller
             $servicesReservation = reservation::with('services')->where('id','=',$id)->first();
             $i = auth()->user()->halls_id ;
             $halls = halls::where('id','=',$i)->first();
-            return view('report.bills')->with([
+            return view('report.billsView')->with([
                 'reservation' => $reservation,
                 'servicesReservation' => $servicesReservation,  
                 'bills' => $bills,  

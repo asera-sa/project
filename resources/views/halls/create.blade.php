@@ -50,9 +50,9 @@
 											<input type="email" class="form-control required" name="email" placeholder=" البريد الإلكتروني لصالة">
 										</div>
 										<div class="control-group form-group mb-0">
-											<label class="form-label">المدينة</label>
-											<select name="city_id" class="form-control js-example-matcher" required>
-												@foreach ($city as $item)
+											<label class="form-label">المنطقة</label>
+											<select name="Address_id" class="form-control js-example-matcher" required>
+												@foreach ($Address as $item)
 												   <option value="{{$item->id}}">{{$item->name}} </option>                                          
 												@endforeach
 											</select>   									
@@ -90,14 +90,7 @@
 											<input type="number" class="form-control required" name="uphone" placeholder=" رقم الهاتف">
 										</div>
 										
-										<div class="control-group form-group mb-0">
-											<label class="form-label">المدينة</label>
-											<select name="city_id" class="form-control js-example-matcher" required>
-												@foreach ($city as $item)
-												   <option value="{{$item->id}}">{{$item->name}} </option>                                          
-												@endforeach
-											</select>   											
-										</div>
+										
 										<div class="control-group form-group mb-0">
 											<label class="form-label">العنوان</label>
 											<input type="text" class="form-control required" name="uaddress" placeholder="العنوان">

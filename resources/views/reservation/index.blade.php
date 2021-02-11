@@ -31,7 +31,7 @@
 										<p class="tx-12 tx-gray-500 mb-2">عدد الحجوزات
 											 <small>({{$reservation->count()}})</small>
 										</p>
-										<a href="{{url('admin/refresh')}}" class="btn-sm btn-info">تحديث البيانات</a>
+										{{-- <a href="{{url('admin/refresh')}}" class="btn-sm btn-info">تحديث البيانات</a> --}}
 
 									</h4>
 								</div>

@@ -95,9 +95,9 @@
                                     <tr>
                                         <td></td>
                                         <td>{{$servic->name}}</td>
-                                        <td>{{$servic->pivot->price}} د.ل</td>
+                                        <td>{{$servic->price}} د.ل</td>
                                         <input type="hidden"  name="services_id[]" value="{{$servic->id}}">
-                                        <input type="hidden"  name="price[]"  value="{{$servic->pivot->price}}">
+                                        <input type="hidden"  name="price[]"  value="{{$servic->price}}">
                                         <td><input type="number" name="quantity[]" value="{{$servic->pivot->quantity}}" style="width: 7rem;" min="1"></td>
                                         <td>
                                             @if ($servic->pivot->quantity > 0)
@@ -109,14 +109,14 @@
                                 @endforeach
 
 
-                                @foreach ($serviceshalls->services as $servic)
+                                @foreach ($serviceshalls as $servic)
                                     @if( ! in_array($servic->id, $i))
                                         <tr>
                                             <td></td>
                                             <td>{{$servic->name}}</td>
-                                            <td>{{$servic->pivot->price}} د.ل</td>
+                                            <td>{{$servic->price}} د.ل</td>
                                             <input type="hidden"  name="services_id[]" disabled value="{{$servic->id}}">
-                                            <input type="hidden"  name="price[]"  value="{{$servic->pivot->price}}">
+                                            <input type="hidden"  name="price[]"  value="{{$servic->price}}">
                                             <td><input type="number" name="quantity[]" disabled style="width: 7rem;" min="1"></td>
                                             <td><input type="checkbox" name="check[]" class="check" value="false"></td>
                                         </tr>

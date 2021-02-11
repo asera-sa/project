@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('css')
 <!-- Internal Select2 css -->
-<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+{{-- <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet"> --}}
 <!--Internal  Datetimepicker-slider css -->
 <link href="{{URL::asset('assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
@@ -82,7 +82,7 @@
                     </div>
                     
 
-                    @if($serviceshalls->services->count() > 0 )     
+                    @if($services->count() > 0 )     
                     <div class="form-group row">
                         <label  class="col-md-2 col-form-label text-md-right"><h5>الخدمات المتوفرة</h5>  </label>
                         
@@ -96,13 +96,13 @@
                                     <th >الكمية المطلوبة</th>
                                     <th></th>
                                 </tr><?php $i=0; ?>
-                                @foreach ($serviceshalls->services as $index=>$item)
+                                @foreach ($services as $index=>$item)
                                     <tr>
                                         <td>{{++$index}}</td>
                                         <td>{{$item->name}}</td>
-                                        <td>{{$item->pivot->price}} د.ل</td>
+                                        <td>{{$item->price}} د.ل</td>
                                         <input type="hidden"  name="services_id[]" disabled value="{{$item->id}}">
-                                        <input type="hidden"  name="price[]" disabled value="{{$item->pivot->price}}">
+                                        <input type="hidden"  name="price[]" disabled value="{{$item->price}}">
                                         <td><input type="number" name="quantity[]" disabled style="width: 7rem;"  min="1"></td>
                                         <td><input type="checkbox" name="check[]" class="check" value="false"></td>
                                         <?php $i++; ?>
@@ -146,7 +146,7 @@
 <!--Internal  spectrum-colorpicker js -->
 <script src="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
 <!-- Internal Select2.min js -->
-<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script> --}}
 <!--Internal Ion.rangeSlider.min js -->
 <script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
 <!--Internal  jquery-simple-datetimepicker js -->
@@ -157,6 +157,7 @@
 <script src="{{URL::asset('assets/plugins/pickerjs/picker.min.js')}}"></script>
 <!-- Internal form-elements js -->
 <script src="{{URL::asset('assets/js/form-elements.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/multiselect/js/bootstrap-multiselect.js')}}"></script> --}}
 
  
 <script>
@@ -174,12 +175,12 @@
     const checkboxes = document.querySelectorAll('.check');
     checkboxes.forEach(box => {
         box.addEventListener('click', function(e) {
-            let td = e.currentTarget.parentElement;
-            let inputquantity = td.previousElementSibling.children[0];
+            let td = e.currentTarget.parentElement;// تشيك بوكس
+            let inputquantity = td.previousElementSibling.children[0];//ال قبل تشك بوكش
             let price = td.previousElementSibling.previousElementSibling;
             let services_id = price.previousElementSibling;
             console.log(services_id);
-            if e(.target.checked) {
+            if (e.target.checked) {
                 inputquantity.disabled = false;
                 price.disabled = false;
                 services_id.disabled = false;

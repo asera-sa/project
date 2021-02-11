@@ -20,8 +20,8 @@
 										
 										<div class="col-md-8">
 											
-											<select name="city_id" class="form-control js-example-matcher" required>
-												@foreach ($city as $item)
+											<select name="Address_id" class="form-control js-example-matcher" required>
+												@foreach ($Address as $item)
 												   <option value="{{$item->id}}">{{$item->name}} </option>                                          
 												@endforeach
 											</select>  										
@@ -59,7 +59,7 @@
 								<h4 class="card-title mb-3">{{$item->name}}</h4>
                                 <p class="card-text">البريد الإلكتروني : {{$item->email}} <br>
                                     رقم الهاتف  : {{$item->phone}}  <br>
-                                    المدينة   : {{$item->city->name}}
+                                    المنطقة   : {{$item->Address->name}}
                                 </p>
 
 							</div>

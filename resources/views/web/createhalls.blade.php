@@ -28,15 +28,15 @@
                     <a class="navbar-brand" href="#"></a>
                     <ul class="navbar-nav mr-auto mt-2 " >
                       @guest
-                           <li><a href="#">  الرئيسية </a></li>
-                           <li><a href="#" >من نحن </a></li>
+                           <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                           <li><a href="{{url('about')}}" > عن الموقع </a></li>
                            <li><a href="{{url('/halls')}}"  > قاعات الأفراح</a></li>
                            <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                            <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
                            <li><a href="{{url('/login')}}" class="active"> دخول </a></li>
                       @else
-                            <li><a href="#">  الرئيسية </a></li>
-                            <li><a href="#" >من نحن </a></li>
+                            <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                            <li><a href="{{url('about')}}" > عن الموقع </a></li>
                             <li><a href="{{url('/halls')}}"  > قاعات الأفراح</a></li>
                             <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                             <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
@@ -93,10 +93,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 control-label">المدينة</label>
+                                    <label class="col-sm-2 control-label">المنطقة</label>
                                     <div class="col-sm-10">
-                                        <select name="city_id" class="form-control js-example-matcher" required>
-                                            @foreach ($city as $item)
+                                        <select name="Address_id" class="form-control js-example-matcher" required>
+                                            @foreach ($Address as $item)
                                                <option value="{{$item->id}}">{{$item->name}} </option>                                          
                                             @endforeach
                                         </select>   	
@@ -150,16 +150,7 @@
                                 <input type="password" class="form-control required" name="upassword_confirmation" placeholder=" تأكيد كلمة المرور ">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 control-label">المدينة</label>
-                            <div class="col-sm-10">
-                                <select name="city_id" class="form-control js-example-matcher" required>
-                                    @foreach ($city as $item)
-                                       <option value="{{$item->id}}">{{$item->name}} </option>                                          
-                                    @endforeach
-                                </select>   	
-                            </div>
-                        </div>
+                       
                         <div class="form-group row">
                             <label class="col-sm-2 control-label">الهاتف</label>
                             <div class="col-sm-10">
@@ -181,7 +172,7 @@
             </div>
             
         </div>
-        <button type="submit" class="btn btn-block btn-outline-c40083 btn-lg" style="border-color: #c40083; color:#c40083;">  حجز جديد </button>
+        <button type="submit" class="btn btn-block btn-outline-c40083 btn-lg" style="border-color: #c40083; color:#c40083;"> حفظ </button>
         </form>
     </div>
 

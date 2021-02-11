@@ -32,7 +32,7 @@ class reportController extends Controller
         $employee = employees::all();
         $title ="قائمة بأسماء جميع الموظفين";
         $value ="";
-        return view('report.allEmp')->with([
+        return view('report.allEmpView')->with([
             'employee' => $employee,
             'title' => $title,
             'value' => $value,
@@ -47,7 +47,7 @@ class reportController extends Controller
         $employee = employees::where('jobs_id','=',$jobs_id)->get();
         $title = "قائمة بأسماء الموظفين التابعين لـ" ; 
     
-        return view('report.allEmp')->with([
+        return view('report.allEmpView')->with([
             'employee' => $employee,
             'title' => $title,
             'value' => $value,
@@ -59,7 +59,7 @@ class reportController extends Controller
         $value = request("salary");
         $employee = employees::where('salary','=',$value)->get();
         $title = " قائمة بأسماء الموظفين الدين رواتبهم ";
-        return view('report.allEmp')->with([
+        return view('report.allEmpView')->with([
             'employee' => $employee,
             'title' => $title,
             'value' => $value,
@@ -70,6 +70,8 @@ class reportController extends Controller
     {
         $bills_id = request("bills_id");
         $bills = bills::where('id','=',$bills_id)->first();
+        if($bills == null)
+          return view('404');
         $id=$bills->reservation_id;  
             
         $i = auth()->user()->halls_id ;
@@ -77,7 +79,7 @@ class reportController extends Controller
 
         $reservation = reservation::with('customer','occasions')->where('id','=',$id)->first();
         $servicesReservation = reservation::with('services')->where('id','=',$id)->first();
-        return view('report.bills')->with([
+        return view('report.billsView')->with([
             'reservation' => $reservation,
             'servicesReservation' => $servicesReservation,  
             'bills' => $bills,  

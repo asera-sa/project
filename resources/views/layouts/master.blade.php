@@ -13,7 +13,28 @@
 		@include('layouts.head')
 		@stack('css')
 	</head>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
 
+	<script>
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		var firebaseConfig = {
+			apiKey: "AIzaSyBDv7ggQLtei3hWFwIA-71YCv6ti7nCGMQ",
+			authDomain: "project2020-bf07f.firebaseapp.com",
+			projectId: "project2020-bf07f",
+			storageBucket: "project2020-bf07f.appspot.com",
+			messagingSenderId: "114894085298",
+			appId: "1:114894085298:web:2b86d4005455a467cbfdab",
+			measurementId: "G-C5XZYN3WK5"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+	</script>
 	<body class="main-body app sidebar-mini">
 		<!-- Loader -->
 		<div id="global-loader">
@@ -32,5 +53,62 @@
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')	
 				@stack('js')
+				
+				<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-messaging.js"></script>
+				<script>
+					const messaging = firebase.messaging();
+					// Add the public key generated from the console here.
+					messaging.getToken({vapidKey: "BPzYnx2BJESIjeJXel5FkP-oxo8nS1F46pIUwn8FP5KzDlfx0OupXe4xnjq6evh2ZwFuDcwHEJPrQFEImU0nwWE"});
+					
+					// 3
+					// للمستخدم عن طرق اجاكس token إعطاء 
+					function sendTokenToUser(fcm_token) {
+						$.post("/admin/save-fcmtoken", {
+							_token : '{{ csrf_token() }}',
+							user_id : '{{ auth()->user()->id }}',
+							fcm_token
+						}).then(resp => {
+							console.log(resp);
+						});
+					} // End of sendTokenToUser
+					
+					// للمستخدم token إنشاء  
+					// 2
+					function retrieveToken() {
+
+						messaging.getToken().then((currentToken) => {
+						if (currentToken) {
+							sendTokenToUser(currentToken);
+						} else {
+							// Show permission request UI
+							console.log('No registration token available. Request permission to generate one.');
+						}
+						}).catch((err) => {
+							console.log('An error occurred while retrieving token. ', err);
+						});
+					
+					} // End of retrieveToken
+
+					// 1
+					retrieveToken();
+
+					messaging.onTokenRefresh(() => {
+						retrieveToken();
+					});
+
+					// عند إستقبال الرساله 
+					// Send notificaion in website
+					messaging.onMessage((payload) => {
+						// alert(payload.notification.body);
+						swal({
+                            text: payload.notification.body,
+                            icon: 'info',
+                            buttons : false,
+                            timer: 2000
+                        });
+						location.reload();
+					});
+
+				</script>
 	</body>
 </html>

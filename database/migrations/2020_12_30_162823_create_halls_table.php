@@ -19,7 +19,7 @@ class CreateHallsTable extends Migration
             $table->string('file');
             $table->string('phone');
             $table->string('email');
-            $table->integer('city_id');
+            $table->integer('Address_id');
             $table->string('address');
             $table->integer('capacity');
             $table->integer('state');

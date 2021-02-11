@@ -1,5 +1,10 @@
 @extends('layouts.master')
-
+@section('css')
+<!--  Owl-carousel css-->
+<link href="{{URL::asset('assets/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet" />
+<!-- Maps css -->
+<link href="{{URL::asset('assets/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
+@endsection
 @push('css')
     <link href='{{URL::asset("/assets/fullcalendar/assets/css/fullcalendar.css")}}' rel='stylesheet' />
     <link href='{{URL::asset("/assets/fullcalendar/assets/css/fullcalendar.print.css")}}' rel='stylesheet' media='print' />
@@ -63,6 +68,83 @@
 @endpush
 
 @section('content')
+
+<div class="row row-sm">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+        <div class="card overflow-hidden sales-card bg-primary-gradient">
+            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+                <div class="">
+                    <h6 class="mb-3 tx-12 text-white"> الحجوزات الكلية </h6>
+                </div>
+                <div class="pb-0 mt-0">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{$reservation->count()}}</h4>
+                            <p class="mb-0 tx-12 text-white op-7"> العدد الكلي للحجوزات </p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+        <div class="card overflow-hidden sales-card bg-danger-gradient">
+            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+                <div class="">
+                    <h6 class="mb-3 tx-12 text-white">الحجوزات المؤكدة</h6>
+                </div>
+                <div class="pb-0 mt-0">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{$f_1->count()}}</h4>
+                            <p class="mb-0 tx-12 text-white op-7"> العدد الكل للحجوزات المؤكدة </p>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+        <div class="card overflow-hidden sales-card bg-success-gradient">
+            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+                <div class="">
+                    <h6 class="mb-3 tx-12 text-white">الحجوزات المبدئية</h6>
+                </div>
+                <div class="pb-0 mt-0">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{$f_0->count()}}</h4>
+                            <p class="mb-0 tx-12 text-white op-7">العدد الكلي للحجوزات المبدئية </p>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+        <div class="card overflow-hidden sales-card bg-warning-gradient">
+            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+                <div class="">
+                    <h6 class="mb-3 tx-12 text-white">الموظفين</h6>
+                </div>
+                <div class="pb-0 mt-0">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{$emp->count()}}</h4>
+                            <p class="mb-0 tx-12 text-white op-7">عدد الموظفين بصالة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
     <div id='wrap'>
         <div id='calendar'></div>
         <div style='clear:both'></div>
@@ -73,6 +155,7 @@
 <!-- main-content closed -->
 
 @endsection
+
 @push('js')
     <script src='{{URL::asset("/assets/fullcalendar/assets/js/jquery-1.10.2.js")}}' type="text/javascript"></script>
     <script src='{{URL::asset("/assets/fullcalendar/assets/js/jquery-ui.custom.min.js")}}' type="text/javascript"></script>
@@ -150,10 +233,10 @@
                     {
                         title: "{{ $reser->time == 0 ? 'حجز صباحي' : 'حجز مسائي' }}",
                         start: new Date("{{ str_replace('-', ',', $reser->date) }}"),
-                        className: "{{ $reser->flag == 0 ? 'important' : 'success' }}"
-                      
+                        className: "{{ $reser->flag == 1 ? 'important' : 'success' }}",                      
                     },
                     @endforeach
+                  
                 ],
             });
 
@@ -162,3 +245,25 @@
 
     </script>
 @endpush
+@section('js')
+     <!--Internal  Chart.bundle js -->
+     <script src="{{URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+     <!-- Moment js -->
+     <script src="{{URL::asset('assets/plugins/raphael/raphael.min.js')}}"></script>
+     <!--Internal  Flot js-->
+     <script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.js')}}"></script>
+     <script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.pie.js')}}"></script>
+     <script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.resize.js')}}"></script>
+     <script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.categories.js')}}"></script>
+     <script src="{{URL::asset('assets/js/dashboard.sampledata.js')}}"></script>
+     <script src="{{URL::asset('assets/js/chart.flot.sampledata.js')}}"></script>
+     <!--Internal Apexchart js-->
+     <script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
+     <!-- Internal Map -->
+     <script src="{{URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+     <script src="{{URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+     <script src="{{URL::asset('assets/js/modal-popup.js')}}"></script>
+     <!--Internal  index js -->
+     <script src="{{URL::asset('assets/js/index.js')}}"></script>
+     <script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>	
+@endsection

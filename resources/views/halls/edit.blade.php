@@ -52,11 +52,11 @@
                        
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">المدينة</label>
+                        <label class="col-sm-2 control-label">المنطقة</label>
                         <div class="col-sm-10">
-                            <select name="city_id" class="form-control js-example-matcher" required>
-                                @foreach ($city as $item)
-                                <option value="{{$item->id}}"  {{$halls->city_id==$item->id  ? 'selected' : ' ' }}>{{$item->name}}</option>  
+                            <select name="Address_id" class="form-control js-example-matcher" required>
+                                @foreach ($Address as $item)
+                                <option value="{{$item->id}}"  {{$halls->Address_id==$item->id  ? 'selected' : ' ' }}>{{$item->name}}</option>  
                                 @endforeach
                             </select>                           </div>
                     </div>

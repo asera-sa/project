@@ -1,17 +1,38 @@
 <?php
 
-
+use Illuminate\Http\Request;
 
     route::group(['prefix' => 'admin','middleware' => 'auth'],function()
     {
 
-        Route::resource('/User', 'UserController');
-        Route::resource('/halls', 'HallsController');        
-        Route::resource('/employees', 'employeesController');
+        Route::get('read-notify', function ()
+        {
+            auth()->user()->unreadNotifications->markAsRead();
+            return back();
+        });
 
+        Route::post('save-fcmtoken', function (Request $request)
+        {
+            auth()->user()->update([
+                'fcm_token' => $request->fcm_token
+            ]);
+            return response()->json([
+                'status' => 'success', 
+                'message' => 'fcm token is updated for user',
+                'fcm_token' => $request->fcm_token
+            ]);
+        });
+
+        Route::resource('/User', 'UserController');
+        Route::resource('/employees', 'employeesController');
+        Route::resource('/halls', 'HallsController');   
+        Route::get('halls/{id}/close','HallsController@close');
+        Route::get('halls/{id}/open','HallsController@open');
+     
+       
         Route::resource('/customer', 'customerController');
         Route::resource('/reservation', 'reservationController');
-        Route::get('/refresh','reservationController@refresh');
+        // Route::get('/refresh','reservationController@refresh');
 
         
 
@@ -62,8 +83,8 @@
         Route::delete('/delServices/{id}','SettingController@delservices');
         Route::post('/addJobs','SettingController@addJobs');
         Route::delete('/deljobs/{id}','SettingController@deljobs');
-        Route::post('/addCity','SettingController@addCity');
-        Route::delete('/delcity/{id}','SettingController@delcity');
+        Route::get('/addAddress','SettingController@addAddress');
+        Route::delete('/delAddress/{id}','SettingController@delAddress');
 
         Route::get('/home','HomeController@index')->name('home');
         Route::get('/','HomeController@index')->name('home');
@@ -71,17 +92,17 @@
     });
 
     Auth::routes(); 
-    Route::get('/',function(){
-        return view('web.index');
-    });
-    Route::get('/about',function(){
-        return view('web.about');
-    });
-    
+   
+    Route::get('/','pagewebController@index');   
+    Route::get('/about','pagewebController@about');
+
     Route::get('/contact','pagewebController@contact');
     Route::post('/contact','pagewebController@send');
+    
     Route::get('/halls','pagewebController@halls');
     Route::post('/halls','pagewebController@search');
+    Route::post('/halls/sort','pagewebController@sort');
+    
     Route::get('/halls/{id}','pagewebController@showhalls');
     Route::get('/reservation/create/{id}','pagewebController@createRes');
     Route::post('/reservation/create/{id}','pagewebController@insertRes');

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->integer('prive');
+            $table->longText('fcm_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

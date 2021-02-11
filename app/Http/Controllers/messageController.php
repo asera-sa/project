@@ -19,7 +19,6 @@ class messageController extends Controller
         ]);
     }
 
-
     public function show($id)
     {
         $messages = Messages::FindOrFail($id);
@@ -29,7 +28,6 @@ class messageController extends Controller
 
     }
 
-
     public function replay($id)
     {
         $messages = Messages::FindOrFail($id);
@@ -37,7 +35,6 @@ class messageController extends Controller
             'messages' => $messages,
         ]);
     } // End of replay
-
 
     public function replayMessage($id)
     {
@@ -57,7 +54,6 @@ class messageController extends Controller
         return redirect()->back()->with('success','تم إرسـال الرد بنجاح');
 
     } // End of replayMessage
-
 
     public function delete($id)
     {

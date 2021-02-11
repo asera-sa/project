@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\halls;
 use App\user;
-use App\city;
+use App\Address;
 use File;
 use Storage;
+use App\reservation;
 
 class HallsController extends Controller
 { 
@@ -18,7 +19,7 @@ class HallsController extends Controller
 
     public function index()
     {
-        $halls = halls::with('city')->orderby('created_at','ASC')->get();
+        $halls = halls::with('Address')->orderby('created_at','ASC')->get();
         return view('halls.index')->with([
             'halls' => $halls,
            ]);
@@ -26,9 +27,9 @@ class HallsController extends Controller
 
     public function create()
     {
-        $city = city::all();
+        $Address = Address::all();
         return view('halls.create')->with([
-            'city' => $city,
+            'Address' => $Address,
         ]);
 
     }
@@ -58,8 +59,7 @@ class HallsController extends Controller
         };
         $halls->phone=request('phone');
         $halls->email=request('email');
-        $halls->city_id=request('city_id');
-        $halls->address=request('address');
+        $halls->Address_id=request('Address_id');
         $halls->capacity=request('capacity');
         $halls->state=1;
 
@@ -83,19 +83,21 @@ class HallsController extends Controller
 
     public function show($id)
     {
-        $halls = halls::find($id);  
+        //$halls = halls::with('Address')->where('id','=',$id)->first();  
+        $halls = halls::with('Address')->where('id','=',$id)->first();
+       // dd($halls);
         return view('halls.show')->with([
                 'halls'      => $halls ,
-            ]);
+        ]);
     }
 
     public function edit($id)
     {
-        $city = city::all();
-        $halls = halls::with('city')->find($id);  
+        $Address = Address::all();
+        $halls = halls::with('Address')->find($id);  
         return view('halls.edit')->with([
             'halls' => $halls,
-            'city' => $city,
+            'Address' => $Address,
 
         ]);
     }
@@ -125,8 +127,7 @@ class HallsController extends Controller
         $halls->phone=request('phone');
         $halls->email=request('email');
         $halls->email=request('email');
-        $halls->city_id=request('city_id');
-        $halls->address=request('address');
+        $halls->Address_id=request('Address_id');
         $halls->capacity=request('capacity');
         $halls->state=1;
 
@@ -142,7 +143,52 @@ class HallsController extends Controller
 
     public function destroy($id)
     {
-        //
+        $reservation = reservation::where('halls_id','=',$id)->where('flag','=',1)->first();
+        if($reservation == null)
+        {
+            return redirect()->back()->with('success','لايمكن حدف بيانات صالة يوجد حجوزات مؤكدة');
+        }
+        else
+        {
+            $reservation = reservation::where('halls_id','=',$id)->get();
+            foreach($reservation as $item)
+            {
+                $item->delete();
+            }
+            $pic = pic::where('halls_id','=',$id)->get();
+            foreach($pic as $item)
+            {
+                $item->delete();
+            }
+            $news = news::where('halls_id','=',$id)->get();
+            foreach($news as $item)
+            {
+                $item->delete();
+            }
+
+            $services = services::where('halls_id','=',$id)->get();
+            foreach($services as $item)
+            {
+                $item->delete();
+            }
+            $halls = halls::findorfail($id);
+            $halls->delete();
+        }
+    }
+
+    public function open($id)
+    {
+        $halls = halls::findorfail($id);
+        $halls->state=1;
+        $halls->save();
+        return redirect()->back();
+    }
+    public function close($id)
+    {
+        $halls = halls::findorfail($id);
+        $halls->state=0;
+        $halls->save();
+        return redirect()->back();
     }
 
 }

@@ -31,11 +31,13 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">الخدمة</label>
                         <div class="col-sm-10">
-                        <select name="services_id" class="form-control">
+							<input type="text" name="name" value="{{old('name')}}" class="form-control" autocomplete="on">
+
+                        {{-- <select name="services_id" class="form-control">
                             @foreach ($services as $item)
                                  <option value="{{$item->id}}">{{$item->name}}</option>       
                             @endforeach
-                        </select>
+                        </select> --}}
                         </div>
 					</div>
 					<div class="form-group">
@@ -82,17 +84,17 @@
 										{{-- <table class="table text-md-nowrap" id="ex" > --}}
                                         <table class="table table-striped mg-b-0 text-md-nowrap" id="ex">
 											<thead>
-												<th  class="border-bottom-0"> # </th>
-												<th  class="border-bottom-0"> الخدمة </th>
-												<th  class="border-bottom-0"> السعر </th>
+												<th class="border-bottom-0"> # </th>
+												<th class="border-bottom-0"> الخدمة </th>
+												<th class="border-bottom-0"> السعر </th>
 											    <th></th>
 											</thead>
 											<tbody>
-												@foreach ($serviceshalls->services as $index=>$item) 	
+												@foreach ($services as $index=>$item) 	
 												<tr class="rowdate">
 													<td>{{++$index}}</td>
 													<td>{{$item->name}}</td>
-													<td>{{$item->pivot->price}}</td>
+													<td>{{$item->price}} د.ل</td>
 													<td>
 														{{-- <form action="{{url('admin/hallServies/'.$item->id)}}" method="post"
                                                             style="display: inline-block">

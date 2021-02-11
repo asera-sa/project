@@ -52,7 +52,7 @@
 													<td>{{++$index}}</td>
 													<td>{{$item->name}}</td>
 													<td>{{$item->email}}</td>
-													<td>{{$item->tilte}}</td>  
+													<td>{{$item->title}}</td>  
 													<td>{{$item->created_at}}</td>
 													<td>
                                                         @if($item->isReplay == 0)

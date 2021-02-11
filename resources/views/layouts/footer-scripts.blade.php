@@ -1,18 +1,16 @@
 <!-- Back-to-top -->
 <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
-
 <!-- JQuery min js -->
-<script src="{{URL::asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+
+{{-- <script src="{{URL::asset('assets/plugins/jquery/jquery.min.js')}}"></script> --}}
+<script src="{{ URL::asset('assets/js/jquery-3.5.1.min.js') }}"></script>
 
 <!-- Bootstrap Bundle js -->
 <script src="{{URL::asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
 <!-- Ionicons js -->
 <script src="{{URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
-
 <!-- Moment js -->
 <script src="{{URL::asset('assets/plugins/moment/moment.js')}}"></script>
-
 <!-- Rating js-->
 <script src="{{URL::asset('assets/plugins/rating/jquery.rating-stars.js')}}"></script>
 
@@ -50,10 +48,23 @@
          suppressScrollX: true
         });
 </script> --}}
-<script src="{{URL::asset('assets/multiselect/css/bootstrap-multiselect.css/js/select2.full.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/multiselect/css/bootstrap-multiselect.css/js/select2.full.min.js')}}"></script> --}}
 <script src="{{ asset('assets/multiselect/js/bootstrap-multiselect.js')}}"></script>
+<script src="{{ asset('assets/js/sweetalert.min.js')}}"></script>
+
+
 
 <script>
+
+$(document).ready(function() {
+            $('#multi-select').multiselect({
+                buttonWidth: '100%',
+                enableFiltering: true,
+                includeSelectAllOption: true,
+                maxHeight: 210,
+                dropUp: false
+            });
+    });
 
 $( function ()
 {

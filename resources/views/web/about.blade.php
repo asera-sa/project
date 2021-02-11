@@ -28,15 +28,15 @@
                     <a class="navbar-brand" href="#"></a>
                     <ul class="navbar-nav mr-auto mt-2 " >
                       @guest
-                           <li><a href="#">  الرئيسية </a></li>
-                           <li><a href="#"  class="active"  >من نحن </a></li>
+                           <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                           <li><a href="{{url('about')}}"  class="active"  > عن الموقع </a></li>
                            <li><a href="{{url('/halls')}}"  > قاعات الأفراح</a></li>
                            <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                            <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
                            <li><a href="{{url('/login')}}" > دخول </a></li>
                       @else
-                            <li><a href="#">  الرئيسية </a></li>
-                            <li><a href="#"  class="active"  >من نحن </a></li>
+                            <li><a href="{{url('/')}}" >  الرئيسية </a></li>
+                            <li><a href="{{url('about')}}"  class="active"  > عن الموقع </a></li>
                             <li><a href="{{url('/halls')}}"  > قاعات الأفراح</a></li>
                             <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                             <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
@@ -54,11 +54,30 @@
 
                     </ul>  
                      
-               </div>
-              
+               </div>       
           </nav>
   </div>
-
+  <div class="container mt-5" dir="rtl" class="text-right" >
+    <div class="row">
+      <div class="col-md-2 col-md-offset-4 mt-1" ></div>
+          <div class="col-md-8 col-md-offset-4 mt-1" >
+              <div class="card mt-5" style=" height:20rem;">
+                  <div class="card-body text-right" style="font-size: 20px;">
+                    <p  style="line-height: 35px;">
+                         أن الحجز في الصالات يتم بصورة تقليدية وذلك بحضور الشخص إلى موقع الصالة ومقابلة
+                          موظف الصالة , ويوجد العديد من المشاكل في هذه الطريقة منها التكلفة 
+                          المادية للوصول إلى الصالة وضياع الزمن الذي يسببه عدم ضمان وجود التاريخ المطلوب 
+                          وعدم توافق الصالة لمتطلبات الزبون بالإضافة الي صعوبات العمل الورقي في ادارة 
+                    يقوم موقعنا بمساعدتك في معرفة خدمات كل صالة والحجوزات والحجز مبدئيا من خلال الموقع 
+                    </p>
+                  </div>
+                   <div class="card-footer text-muted text-right">
+                     <b>عدد الصالات المسجلة في الموقع : </b> {{$halls->count()}}
+                   </div>
+              </div>
+          </div>
+    </div>
+  </div>
 
   
 

@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="css/images/favicon.ico"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}" type="text/css" media="all" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
     <style>
@@ -17,12 +18,24 @@
       {
         display: none;
       }
+      .li__search {
+        height: 0px !important;
+      }
+      
+      .li__search a {
+        padding: 8px 10px !important;
+        margin-top: 8px !important;
+      }
+      .li__search a:hover {
+        padding: 8px 10px !important; 
+        margin-top: 8px !important;
+      }
 
     </style>
 </head>
 <body dir="rtl">
   <div id="header">
-          <img src="{{asset('css/images/logo.jpg')}}"  style="width:20rem; height:4rem; margin-top:2rem; margin-left:8rem;"  alt="">
+          <img src="{{asset('css/images/logo.jpg')}}"  style="width:16rem; height:4rem; margin-top:2rem; margin-left:2rem;"  alt="">
           <nav id="navigation"  class="navbar navbar-expand-lg navbar-light ">
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
@@ -31,15 +44,42 @@
                     <a class="navbar-brand" href="#"></a>
                     <ul class="navbar-nav mr-auto mt-2 " >
                       @guest
-                           <li><a href="#">  الرئيسية </a></li>
-                           <li><a href="#" >من نحن </a></li>
+                           <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                           <li><a href="{{url('about')}}" > عن الموقع </a></li>
                            <li><a href="{{url('/halls')}}"  class="active" > قاعات الأفراح</a></li>
                            <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                            <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
                            <li><a href="{{url('/login')}}" > دخول </a></li>
+                           <li>
+                            <form action="{{ url('/halls') }}" id="form__search" method="post">
+                              @csrf
+                              <input class="form-control input__search" style="display: none;margin-top: 4px !important;" name="search" type="text" placeholder="Search">
+                            </form>
+
+                          </li>
+                          <li class="li__search">
+                            <a class="btn white btn__search show" href="{{ url('/halls') }}" >
+                              <i class="fas fa-search"></i>
+                            </a>
+                          </li>
+                          <li class="li__search">
+                            <form action="{{ url('/halls/sort') }}" id="form__search" method="get">
+                              @csrf
+                              <select name="filter" class="form-control input__filter" style="display: none; margin-top: 4px !important">
+                                  <option value="0">فرز بالأعلى سعرا  </option>
+                                  <option value="1">فرز بالأقل سعرا  </option>
+                                  <option value="2"> حسب الاسم </option>
+                              </select>
+                            </form>
+                          </li>
+                          <li class="li__search">
+                            <a class="btn white btn__filter show" href="{{url('/halls/sort') }}">
+                              <i class="fas fa-filter"></i>
+                            </a>
+                          </li>
                       @else
-                            <li><a href="#">  الرئيسية </a></li>
-                            <li><a href="#" >من نحن </a></li>
+                            <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                            <li><a href="{{url('about')}}" > عن الموقع </a></li>
                             <li><a href="{{url('/halls')}}"  class="active" > قاعات الأفراح</a></li>
                             <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                             <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
@@ -52,23 +92,69 @@
                             @if(auth()->user()->prive == 0)
                                 <li><a href="{{url('/admin/homeAdmin')}}" >لوحة التحكم </a></li>
                             @endif
+                            <li>
+                              <form action="{{ url('/halls') }}" id="form__search" method="post">
+                                @csrf
+                                <input class="form-control input__search" style="display: none;margin-top: 4px !important;" name="search" type="text" placeholder="Search">
+                              </form>
+
+                            </li>
+                            <li class="li__search">
+                              <a class="btn white btn__search show" href="{{ url('/halls') }}" >
+                                <i class="fas fa-search"></i>
+                              </a>
+                            </li>
+                            <li >
+                              <form action="{{ url('/halls/sort') }}" id="form__search" method="get">
+                                @csrf
+                                <select name="filter" class="form-control input__filter" style="display: none; margin-top: 4px !important">
+                                  <option value="0">فرز بالأعلى سعرا  </option>
+                                  <option value="1">فرز بالأقل سعرا  </option>
+                                  <option value="2"> حسب الاسم </option>
+                                </select>
+                              </form>
+                            </li>
+                            <li class="li__search">
+                              <a class="btn white btn__filter show" href="{{ url('/halls/sort') }}" >
+                                <i class="fas fa-filter"></i>
+                              </a>
+                            </li>
                       @endguest  
                     </ul>  
                </div>
+               
           </nav>
+
   </div>
 
- <div class="row">
-      <div class="col-md-4 col-md-offset-4 p-5" >
+ {{-- <div class="row">
+      <div class="col-md-2 col-md-offset-4 p-5" >
       </div>
-      <div class="col-md-6 col-md-offset-4" >
+      <div class="col-md-5 col-md-offset-4" >
         <form class="form-inline" action="{{url('/halls')}}" method="POST">
           @csrf
-               <input class="form-control mr-sm-2" name="search" type="text" placeholder="Search">      
-               <button class="btn  my-2 my-sm-0 m-2 text-white" style="background-color: #c40083;" type="submit">بحث</button>
+        
+            <input class="form-control mr-sm-2 input__search" style="display: none;" name="search" type="text" placeholder="Search">      
+                <button class="btn my-2 my-sm-0 m-2 text-white btn__search" style="background-color: #c40083;" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+        
         </form>
       </div>
- </div>
+      <div class="col-md-5 col-md-offset-4" >
+        <form class="form-inline" action="{{url('/halls')}}" method="POST">
+          @csrf
+          <select name=""  class="form-control mr-sm-2 input__filter" style="display: none">
+            <option value="">فرز بالأعلى سعرا  </option>
+            <option value="">فرز بالأقل سعرا  </option>
+          </select>
+              <button class="btn  my-2 my-sm-0 m-2 text-white btn__filter" style="background-color: #c40083;" type="submit">
+                <i class="fas fa-filter"></i>
+              </button>
+        </form>
+      </div>
+ </div> --}}
+
   <div class="container" dir="rtl" class="text-right" >
   
         <div class="row">
@@ -81,7 +167,7 @@
                                <p>
                                    <b>البريد الإلكتروني : </b>{{$item->email}} <br>
                                    <b> رقم الهاتف : </b>{{$item->phone}} <br>
-                                   <b>المدينة  : </b>{{$item->city->name}}</p>    
+                                   <b>المنطقة  : </b>{{$item->Address->name}}</p>    
                            </div>
                            <div class="card-footer text-muted text-right">
                                <a href="{{url('/halls/'.$item->id) }}" class="btn btn-primary btn-sm">عرض تفاصيل الصالة</a>
@@ -113,7 +199,8 @@
                 <div class="modal-body">
                   <form class="form-signin" action="{{url('/contact')}}" method="POST">
                     @csrf
-                        <textarea class="vis" name="halls_id " id="" cols="30" rows="10"></textarea>
+                        {{-- <textarea class="vis halls_id" name="halls_id " id="" cols="30" rows="10"></textarea> --}}
+                        <input class="halls_id" type="hidden" name="halls_id" />
                          <div class="form-group">
                              <input type="text" name="email" class="form-control" placeholder="أكتب البريد الإلكتروني" required autofocus />
                          </div>
@@ -147,7 +234,9 @@
 
 
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="{{URL::asset('assets/js/jquery-3.5.1.min.js')}}"></script>
+  {{-- <script src="{{asset('js/app.js')}}"></script> --}}
+  {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  
@@ -205,9 +294,29 @@
        }); 
        $('.btn__show__news').on('click', function(e) {
              e.preventDefault(); // عشان مايديرش load للصفحة          
-            $('.modal .modal-body textarea').text($(this).data('id'));
+            // $('.modal .modal-body textarea.halls_id').text($(this).data('id'));
+            $('.modal .modal-body input.halls_id').val($(this).data('id'));
 
         }); 
+        $('.btn__search').on('click', function (e) {
+            e.preventDefault(); // يوقف تحميل الصفحة
+            if ($(this).hasClass('show')) { // اذا كلاس  موجود يظهر حقل اﻹدخال ويحذف الكلاس
+              $('.input__search').fadeIn('slow');
+              $(this).removeClass('show');
+            } else { 
+              $('#form__search').submit();
+            }
+        });
+        $('.btn__filter').on('click', function (e) {
+          e.preventDefault(); // يوقف تحميل الصفحة
+            if ($(this).hasClass('show')) { // اذا كلاس  موجود يظهر حقل اﻹدخال ويحذف الكلاس
+              $('.input__filter').fadeIn('slow');
+              $(this).removeClass('show');
+            } else { 
+              $('#form__search').submit();
+            }
+        });
+        
     </script>
 </body>
 </html>

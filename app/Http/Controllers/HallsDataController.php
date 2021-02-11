@@ -17,22 +17,27 @@ class HallsDataController extends Controller
     public function indexS()
     {
         $id=auth()->user()->halls_id;
-        $serviceshalls = halls::with('services')->where('id','=',$id)->first();
-        $services = services::all();
+        // $serviceshalls = halls::with('services')->where('id','=',$id)->first();
+        $services=services::all();
         return view('hallsData.hallsServices')->with([
-            'services' => $services,
-            'serviceshalls' => $serviceshalls,
+             'services' => $services,
+            //  'serviceshalls' => $serviceshalls,
         ]);
     }
     public function storeS(Request $request)
     {
-        $id=auth()->user()->halls_id;
-        $halls= halls::where('id','=',$id)->first();
-        $price=request("price");
-        $services= request("services_id");  
-        $halls->services()->attach($services,['price' => $price]);
+        // $id=auth()->user()->halls_id;
+        // $halls= halls::where('id','=',$id)->first();
+        // $price=request("price");
+        // $services= request("services_id");  
+        // $halls->services()->attach($services,['price' => $price]);
         
-       
+        $id=auth()->user()->halls_id;
+        $services = new services;
+        $services->halls_id=$id;
+        $services->name=request("name");
+        $services->price=request("price");
+        $services->save();  
         return redirect()->back();
     }
 
@@ -55,7 +60,7 @@ class HallsDataController extends Controller
         // }
     }
 
-/*-----------------المناسبات----------------------*/
+/*---------------------المناسبات----------------------*/
 
     public function indexO()
     {
@@ -65,6 +70,7 @@ class HallsDataController extends Controller
             'occasions' => $occasions,
         ]);
     }
+    
     public function storeO(Request $request)
     {
        
@@ -96,6 +102,6 @@ class HallsDataController extends Controller
         }
     }
 
-    /*-----------------الصور----------------------*/
+    /*---------------------الصور----------------------*/
   
 }

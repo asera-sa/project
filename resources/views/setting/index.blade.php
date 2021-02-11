@@ -15,94 +15,7 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
-     	<!-- row -->
-				<div class="row">
-					<div class="col-lg-12 col-md-12">
-						<div class="card">
-							<div class="card-body">
-								<div class="main-content-label mg-b-5">
-									خدمة جديدة
-								</div>
-                                <p class="mg-b-20"></p>
-                                <form class="form-horizontal" action="{{url('/admin/addServices')}}" method="post" data-parsley-validate="">
-									@csrf
-									<div class="row">
-										<div class="col-lg-9 col-md-8 form-group mg-b-0">
-											<label class="form-label"> الخدمة :<span class="tx-danger">*</span></label>
-											<input class="form-control" name="name" placeholder="أدخل الخدمة " required="" type="text">
-										</div>
-										<div class="col-lg-3 col-md-4 mg-t-10 mg-sm-t-25">
-											<button class="btn btn-main-primary pd-x-20" type="submit"> إضافة</button>
-										</div>
-									</div>
-								</form>
-                            </div>
-                           
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-				<!-- row opened -->
-				<div class="row row-sm">
-					<!--div-->
-						<!--div-->
-						<div class="col-xl-12">
-                            @if ($services->count() > 0 )
-							<div class="card">
-								<div class="card-header pb-0">
-									<h4>
-										<p class="tx-12 tx-gray-500 mb-2">الخدمات 
-											 <small>({{$services->count()}})</small>
-										</p>
-									</h4>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-
-										{{-- <table class="table text-md-nowrap" id="ex" > --}}
-                                        <table class="table table-striped mg-b-0 " id="ex" >
-											<thead>
-												<th  class="border-bottom-0"> # </th>
-												<th  class="border-bottom-0"> خدمات الصالة </th>
-												<th  class="border-bottom-0"> </th>	
-											    <th></th>																							</tr>
-											</thead>
-											<tbody>
-												@foreach ($services as $index=>$item) 												
-												<tr class="rowdate">
-													<td>{{++$index}}</td>
-													<td>{{$item->name}}</td>
-													<td>
-                                                        <form action="{{url('admin/delServices/'.$item->id)}}" method="post"
-                                                            style="display: inline-block">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                    </td>
-													
-												</tr>
-												@endforeach
-											</tbody>
-										</table>
-									</div>
-                                </div><!-- bd -->
-                                <div class="card-footer clearfix">
-                                    <ul class="pagination pagination-sm m-0 float-right">
-                                        {!! $services->links() !!}
-                                    </ul>
-                                    </div>
-                            </div><!-- bd -->
-                            @else 
-                            <h4>لايوجد خدمات</h4><br><br>
-                            @endif
-						</div>
-						<!--/div-->		
-				</div>
-                <!-- /row -->
-                
+     
 
 <!------------------------------------JOBS---------------------------------->
 
@@ -197,7 +110,7 @@
     <!-- /row -->
     
 
-<!----------------------------------CITY------------------------------------>
+<!----------------------------------Address------------------------------------>
 
 
 
@@ -207,10 +120,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="main-content-label mg-b-5">
-                        مدينة جديدة
+                        منطقة جديدة
                     </div>
                     <p class="mg-b-20"></p>
-                    <form class="form-horizontal" action="{{url('/admin/addCity')}}" method="post" data-parsley-validate="">
+                    <form class="form-horizontal" action="{{url('/admin/addAddress')}}" method="get" data-parsley-validate="">
                         @csrf
                         <div class="row">
                             <div class="col-lg-9 col-md-8 form-group mg-b-0">
@@ -233,12 +146,12 @@
         <!--div-->
             <!--div-->
             <div class="col-xl-12">
-                @if ($city->count() > 0 )
+                @if ($Address->count() > 0 )
                 <div class="card">
                     <div class="card-header pb-0">
                         <h4>
                             <p class="tx-12 tx-gray-500 mb-2">المدن  
-                                 <small>({{$city->count()}})</small>
+                                 <small>({{$Address->count()}})</small>
                             </p>
                         </h4>
                     </div>
@@ -254,12 +167,12 @@
                                     <th></th>																							</tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($city as $index=>$item) 												
+                                    @foreach ($Address as $index=>$item) 												
                                     <tr class="rowdate">
                                         <td>{{++$index}}</td>
                                         <td>{{$item->name}}</td>
                                         <td>
-                                            <form action="{{url('admin/delcity/'.$item->id)}}" method="post"
+                                            <form action="{{url('admin/delAddress/'.$item->id)}}" method="post"
                                                style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')
@@ -277,7 +190,7 @@
                     </div><!-- bd -->
                     <div class="card-footer clearfix">
                         <ul class="pagination pagination-sm m-0 float-right">
-                            {!! $city->links() !!}
+                            {!! $Address->links() !!}
                         </ul>
                     </div>
                 </div><!-- bd -->

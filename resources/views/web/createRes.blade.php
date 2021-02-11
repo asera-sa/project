@@ -28,15 +28,15 @@
                     <a class="navbar-brand" href="#"></a>
                     <ul class="navbar-nav mr-auto mt-2 " >
                       @guest
-                           <li><a href="#">  الرئيسية </a></li>
-                           <li><a href="#" >من نحن </a></li>
+                          <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                          <li><a href="{{url('about')}}" > عن الموقع </a></li>
                            <li><a href="{{url('/halls')}}"  class="active" > قاعات الأفراح</a></li>
                            <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                            <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
                            <li><a href="{{url('/login')}}" > دخول </a></li>
                       @else
-                            <li><a href="#">  الرئيسية </a></li>
-                            <li><a href="#" >من نحن </a></li>
+                            <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                            <li><a href="{{url('about')}}" > عن الموقع </a></li>
                             <li><a href="{{url('/halls')}}"  class="active" > قاعات الأفراح</a></li>
                             <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                             <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
@@ -191,13 +191,46 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">إضـافـة</button>
+                        <button data-target="#loginModal" data-toggle="modal"  type="submit" class="btn btn-primary">إضـافـة</button>
                     </div>
                     <!-- /.card-footer -->
-                </form>
+                   </form>
                 </div>
             </div>
         </div>
+
+        <div class="modal text-right" id="loginModal" tabindex="-1">
+            <div class="modal-dialog text-right">
+                <div class="modal-content">
+                    <div class="modal-header " dir="rtl">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="margin-left: 12rem;">إلغاء حجز</h4>
+                    </div>
+                  <form class="form-horizontal" action="{{url('/canelReservation')}}" method="POST" >
+                      @csrf  
+                    <div class="modal-body">
+                                     
+                              <div class="form-group row">
+                                  <div class="col-sm-2"></div>
+                                  <div class="col-sm-4">
+                                  <input type="text" name="number" placeholder="ادخل رقم الحجز" value="{{old('number')}}" class="form-control">
+                                  </div>
+                                  <div class="col-sm-4">
+                                      <button class="btn btn-success btn-sm" type="submit">إلغاء الحجز</button>
+                                  </div>
+
+                              </div>
+                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger btn-sm" data-dismiss="modal"> إغلاق </button>
+                    </div>
+                  </form>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -227,7 +260,7 @@
             let inputquantity = td.previousElementSibling.children[0];
             let price = td.previousElementSibling.previousElementSibling;
             let services_id = price.previousElementSibling;
-            console.log(services_id);
+           // console.log(services_id);
             if (e.target.checked) {
                 inputquantity.disabled = false;
                 price.disabled = false;

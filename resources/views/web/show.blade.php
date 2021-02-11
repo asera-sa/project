@@ -79,15 +79,15 @@
                     <a class="navbar-brand" href="#"></a>
                     <ul class="navbar-nav mr-auto mt-2 " >
                      @guest
-                           <li><a href="#">  الرئيسية </a></li>
-                           <li><a href="#" >من نحن </a></li>
+                          <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                          <li><a href="{{url('about')}}" > عن الموقع </a></li>
                            <li><a href="{{url('/halls')}}"  class="active" > قاعات الأفراح</a></li>
                            <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                            <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
                            <li><a href="{{url('/login')}}" > دخول </a></li>
                       @else
-                            <li><a href="#">  الرئيسية </a></li>
-                            <li><a href="#" >من نحن </a></li>
+                            <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
+                            <li><a href="{{url('about')}}" > عن الموقع </a></li>
                             <li><a href="{{url('/halls')}}"  class="active" > قاعات الأفراح</a></li>
                             <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                             <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
@@ -108,9 +108,9 @@
               
           </nav>
     </div>
-    <div class="container" dir="rtl" class="text-right" >
+    <div class="container" dir="rtl" class="text-right">
       <div class="row text-right" >
-                <div class="col-md-8 col-md-offset-4 mt-3" >
+                <div class="col-md-8 col-md-offset-4 mt-3">
   
 
 
@@ -118,20 +118,7 @@
                     <div id='calendar' style="width: 100% !important;"></div>                    
                     <div style='clear:both'></div>
                   </div>
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
+              
 
 
 
@@ -139,7 +126,7 @@
 
                   
                 </div>
-                <div class="col-md-4 col-md-offset-4 mt-3" >
+                <div class="col-md-4 col-md-offset-4 mt-3">
                   <?php $count=0; ?>
                   @foreach ($news as $index=>$item) 
                   @if($count < 5)
@@ -171,7 +158,7 @@
                 <h4 class="modal-title" style="margin-left: 12rem;"> </h4>
             </div>
           
-            <div class="modal-body">
+            <div class="modal-body" style="">
               <p></p>    
             </div>
 
@@ -203,7 +190,6 @@
                                            <td>{{$item->name}}</td>
                                            <td>{{$item->st_fr_price}}</td>
                                            <td>{{$item->thu_price}}</td>
-                 
                                          </tr>
                                     @endforeach                                    
                                </tbody>
@@ -219,11 +205,11 @@
                                  <th  class="border-bottom-0"> السعر   </th>
                              </thead>
                              <tbody>   
-                                 @foreach ($serviceshalls->services as $index=>$item) 	
+                                 @foreach ($services as $index=>$item) 	
                                      <tr class="rowdate">
                                        <td>{{++$index}}</td>
                                        <td>{{$item->name}}</td>
-                                       <td>{{$item->pivot->price}}</td>
+                                       <td>{{$item->price}}</td>
                                      </tr>
                                  @endforeach
                              </tbody>

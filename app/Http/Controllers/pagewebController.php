@@ -5,23 +5,68 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\messages;
 use App\halls;
-use App\city;
+use App\Address;
 use App\reservation;
+use App\services;
 use App\pic;
 use App\customer;
 use App\occasions;
 use App\User;
 use App\news;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\AdminContactNotify;
+
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
 
 class pagewebController extends Controller
 {
+
+    public function index()
+    {
+        $halls1=halls::orderby('id','DESC')->first();
+        if($halls1 != null)
+        {
+            $halls2=halls::where('id','!=',$halls1->id)->orderby('id','DESC')->first();
+            if($halls2 != null)
+            {
+                $halls3=halls::where('id','!=',$halls1->id)->where('id','!=',$halls2->id)->orderby('id','DESC')->first();
+            }
+            else
+            {
+                $halls3=null;
+            }
+        }
+        else
+        {
+            $halls2=null;
+            $halls3=null;
+        }
+
+        return view('web.index')->with([
+            'halls1' => $halls1,
+            'halls2' => $halls2,
+            'halls3' => $halls3,
+        ]);
+    }
+
+    public function about()
+    {
+        $halls = halls::all();
+        return view('web.about')->with([
+            'halls' => $halls,
+        ]);
+    }
+
     public function contact()
     {
         return view('web.contact');
     }
+
     public function send()
     {
-        // return 't';
         $messages = new messages;
         $messages->halls_id=request("halls_id");
         $messages->email=request("email");
@@ -29,48 +74,105 @@ class pagewebController extends Controller
         $messages->title=request("title");
         $messages->content=request("content");
         $messages->save();
+
+        if (request("halls_id") == 0) {
+            $users = User::where('prive', 0)->get();
+            $tokens = User::where('prive', 0)->pluck('fcm_token')->toArray();
+        }
+         else {
+            $users = User::where('halls_id','=',request('halls_id'))->where('prive', 1)->get();
+            $tokens = User::where('prive', 1)->pluck('fcm_token')->toArray();
+        }
+        Notification::send($users, new AdminContactNotify("لديك رسالة جديدة",request("title"),request("content") ));
+        
+        $this->boradcastNotify('مراسلة من موقع', "لديك رسالة جديدة", $tokens);
         return redirect()->back()->with('success','تم الإرسال بنجاح ');
     }
+
+    // Send notifications to user
+    private function boradcastNotify($title, $body, $tokens)
+    {
+        $optionBuilder = new OptionsBuilder();
+        $optionBuilder->setTimeToLive(60*20);
+
+        $notificationBuilder = new PayloadNotificationBuilder($title);
+        $notificationBuilder->setBody($body)
+                    ->setSound('default');
+
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData(['title' => $title,'body' => $body]);
+
+        $option = $optionBuilder->build();
+        $notification = $notificationBuilder->build();
+        $data = $dataBuilder->build();
+
+        $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
+
+        return $downstreamResponse->numberSuccess();
+    }
+
 /*----------------------------قاعات--------------------------*/
     public function halls()
     {
-        $city = city::all();
-        $halls = halls::with('city')->paginate(9);
+        $Address = Address::all();
+        $halls = halls::with('Address')->paginate(9);
         return view('web.halls')->with([
             'halls' => $halls,
-            'city' => $city,
+            'Address' => $Address,
         ]);
     }
 
     public function search(Request $request)
     {
-        $city = city::all();
+        $Address = Address::all();
         $search = request("search");
-        $halls = halls::with('city')->paginate(9);
+        $halls = halls::with('Address')->paginate(9);
 
-            $city = city::where('name','=',$search)->first();
-            if($city!=null)
+            $Address = Address::where('name','=',$search)->first();
+            if($Address!=null)
             {
-                $result = halls::with('city')->where('city_id','=',$city->id)->get();
+                $result = halls::with('Address')->where('Address_id','=',$Address->id)->get();
                 if($result==null)       
-                   $result = halls::with('city')->where('name','=',$search)->get();
+                   $result = halls::with('Address')->where('name','=',$search)->get();
             }
             else
-                $result = halls::with('city')->where('name','=',$search)->get();
+                $result = halls::with('Address')->where('name','=',$search)->get();
 
         return view('web.resultsearch')->with([
             'result' => $result,
-            'halls' => $halls,
-            
+            // 'halls' => $halls,       
         ]);
     }
 
+    public function sort()
+    {
+        return '4';
+        $num =require("filter");
+        dd($num);
+        if($num == 0)
+        {
+        }
+        else if($num ==1)
+        {
+            $result = occasions::orderby('st_fr_price','ASC')->get();//تصاعدي;
+            
+        }
+        else
+        {
+
+        }
+        
+        return view('web.resultsearch')->with([
+            'result' => $result,
+        ]);
+    }
     public function showhalls($id)//صفحة لقاعة
     {
         $halls =halls::find($id);
         $pic=pic::where('halls_id','=',$halls->id)->get();
         $occasions = occasions::with('halls')->where('halls_id','=',$id)->get();
-        $serviceshalls = halls::with('services')->where('id','=',$id)->first();
+        $services = services::with('halls')->where('halls_id','=',$id)->get();
+
         $news = news::where('halls_id','=',$id)->get();
         $reservation=reservation::where('halls_id','=',$id)->get();
 
@@ -78,7 +180,7 @@ class pagewebController extends Controller
             'pic' => $pic,
             'halls' => $halls,
             'occasions' => $occasions,
-            'serviceshalls' => $serviceshalls,
+            'services' => $services,
             'news' => $news,
             'reservation' => $reservation,
 
@@ -96,7 +198,6 @@ class pagewebController extends Controller
             'serviceshalls' => $serviceshalls,
         ]);
     }
-
 
     public function insertcustomer()
     {
@@ -183,9 +284,9 @@ class pagewebController extends Controller
 
     public function createhalls()
     {
-        $city = city::all();
+        $Address = Address::all();
         return view('web.createhalls')->with([
-            'city' => $city,
+            'Address' => $Address,
         ]);
     }
   
@@ -212,8 +313,7 @@ class pagewebController extends Controller
         };
         $halls->phone=request('phone');
         $halls->email=request('email');
-        $halls->city_id=request('city_id');
-        $halls->address=request('address');
+        $halls->Address_id=request('Address_id');
         $halls->capacity=request('capacity');
         $halls->state=1;
 
@@ -248,7 +348,7 @@ class pagewebController extends Controller
         $delres = reservation::where('num','=',$num)->first();
         if($delres == null)
         {
-            return redirect()->back()->with('success','رقم الحجز غير صحيح');
+            return redirect()->back()->with('error','رقم الحجز غير صحيح');
         }
         else
         {  
