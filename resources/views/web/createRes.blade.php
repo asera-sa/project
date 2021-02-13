@@ -18,6 +18,8 @@
     </style>
 </head>
 <body dir="rtl">
+    @include('sweetalert::alert')
+
     <div id="header">
           <img src="{{asset('css/images/logo.jpg')}}"  style="width:20rem; height:4rem; margin-top:2rem; margin-left:8rem;"  alt="">
           <nav id="navigation"  class="navbar navbar-expand-lg navbar-light ">
@@ -63,19 +65,21 @@
 
         <div class="row row-sm">
 
-            <div class="col-xl-6">
+            <div class="col-xl-12">
                 <div class="card">
                     <h4 class="text-right p-3" style="color: #c40083;">بيانات حجز</h4>
            
-                   <form class="form-horizontal" action="{{url('/reservation/create/'.$serviceshalls->id)}}" method="POST" >
+                   <form class="form-horizontal" action="{{url('/reservation/create/'.$id)}}" method="POST" >
                             @csrf
                             <div class="card-body">
-                                <div class="form-group row">
+                                <div class="form-group row" style="align-items: center">
                                     <label class="col-sm-2 control-label">رقم الزبون</label>
                                     <div class="col-sm-6">
-                                        <input type="number" name="number" value="{{old('number')}}" class="form-control" >
+                                        <input type="number" name="number" value="{{$customer ?? ''}}" class="form-control" >
                                      </div>
-                                    
+                                     <a data-target="#customer_insert" data-toggle="modal" style="background-color: #c40083;" class="m-2 text-white btn btn-sm">
+                                         زبون جديد
+                                    </a>
                                 </div>
                 
                                 <div class="form-group row">
@@ -106,7 +110,7 @@
                                     </div>
                                 </div>
                                 
-                                @if($serviceshalls->services->count() > 0 )     
+                                @if($services->count() > 0 )     
                                 <div class="form-group row">
                                     <label  class="col-md-4 col-form-label text-md-right"><h6>الخدمات المتوفرة</h6>  </label>
                                 </div>
@@ -122,13 +126,13 @@
                                                 <th >الكمية المطلوبة</th>
                                                 <th></th>
                                             </tr><?php $i=0; ?>
-                                            @foreach ($serviceshalls->services as $index=>$item)
+                                            @foreach ($services as $index=>$item)
                                                 <tr>
                                                     <td>{{++$index}}</td>
                                                     <td>{{$item->name}}</td>
-                                                    <td>{{$item->pivot->price}} د.ل</td>
+                                                    <td>{{$item->price}} د.ل</td>
                                                     <input type="hidden"  name="services_id[]" disabled value="{{$item->id}}">
-                                                    <input type="hidden"  name="price[]" disabled value="{{$item->pivot->price}}">
+                                                    <input type="hidden"  name="price[]" disabled value="{{$item->price}}">
                                                     <td><input type="number" name="quantity[]" disabled style="width: 7rem;"  min="1"></td>
                                                     <td><input type="checkbox" name="check[]" class="check" value="false"></td>
                                                     <?php $i++; ?>
@@ -146,15 +150,15 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary pull-right">إضـافـة</button>
+                                <button type="submit"  style="background-color: #c40083;"  class="btn text-white pull-right">إضـافـة</button>
                             </div>
                             <!-- /.card-footer -->
                    </form>
                 </div>
             </div>
 
-            <div class="col-xl-6">
-                <div class="card">
+            {{-- <div class="col-xl-6"> --}}
+                {{-- <div class="card">
                     <h4 class="text-right p-3" style="color: #c40083;"> زبون جديد </h4>
            
                    <form class="form-horizontal" action="{{url('/customer')}}" method="get" >
@@ -195,9 +199,77 @@
                     </div>
                     <!-- /.card-footer -->
                    </form>
+                </div> --}}
+                
+            {{-- </div> <!-- End of customer --> --}}
+            
+            
+
+            <div class="modal text-right" id="customer_insert"  tabindex="-1">
+                <div class="modal-dialog text-right" style="max-width: 750px !important;">
+                    <div class="modal-content">
+                        <div class="modal-header " dir="rtl">
+                            <button class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" style="margin-left: 12rem;"> </h4>
+                        </div>
+                        
+                        <div class="modal-body">
+                            <div class="card">
+                                <h4 class="text-right p-3" style="color: #c40083;"> زبون جديد </h4>
+                       
+                               <form class="form-horizontal" action="{{url('/customer')}}" method="get" >
+                                @csrf
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 control-label">إسم</label>
+                                        <div class="col-sm-10">
+                                        <input type="text" name="name" value="{{old('name')}}" class="form-control" >
+                                        </div> 
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 control-label">البريد الألكتروني</label>
+                                        <div class="col-sm-10">
+                                        <input type="email" name="email" value="{{old('email')}}" class="form-control" >
+                                        </div>
+                                    </div>
+                
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 control-label">العنوان</label>
+                                        <div class="col-sm-10">
+                                        <input type="text" name="address" value="{{old('address')}}" class="form-control" >
+                                        </div>
+                                    </div>
+                
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 control-label">رقم الهاتف</label>
+                                        <div class="col-sm-10">
+                                        <input type="text" name="phone" value="{{old('phone')}}" class="form-control" autocomplete="on">
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">إضـافـة</button>
+                                </div>
+                                <!-- /.card-footer -->
+                               </form>
+                            </div>
+            
+                        </div>
+            
+                        <div class="modal-footer">
+                            <button class="btn btn-danger btn-sm" data-dismiss="modal"> إغلاق </button>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+
+
+
+        </div> <!-- End of row row-sm-->
 
         <div class="modal text-right" id="loginModal" tabindex="-1">
             <div class="modal-dialog text-right">

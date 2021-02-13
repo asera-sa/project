@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">نص الرسالة</label>
                         <div class="col-sm-10">
-                        <textarea type="text" disabled class="form-control" rows="5">{{$messages->title}}</textarea>
+                        <textarea type="text" disabled class="form-control" rows="5">{{$messages->content}}</textarea>
                         </div>
                     </div>
 

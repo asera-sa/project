@@ -132,18 +132,21 @@
               @foreach ($result as $item)
                   <div class="col-md-4 col-md-offset-4 mt-1" >
                       <div class="card" style=" height:26rem;">
-                           <img class="card-img-top" src="{{asset($item->file)}}"  style="height:14rem;">
+                           <img class="card-img-top" src="{{asset($item->halls->file)}}"  style="height:14rem;">
                            <div class="card-body text-right">
-                               <h5 class="card-title">{{$item->name}}</h5>
+                               <h5 class="card-title">{{$item->halls->name}}</h5>
                                <p>
-                                   <b>البريد الإلكتروني : </b>{{$item->email}} <br>
-                                   <b> رقم الهاتف : </b>{{$item->phone}} <br>
-                                   <b>المنطقة  : </b>{{$item->Address->name}}</p>    
+                                   <b>البريد الإلكتروني : </b>{{$item->halls->email}} <br>
+                                   <b> رقم الهاتف : </b>{{$item->halls->phone}} &nbsp;&nbsp;&nbsp;
+                                   <b>المنطقة  : </b>{{$item->halls->Address->name}} <br>
+                                   <b> المناسبة : </b>{{$item->name}} <br>
+                                
+                                </p>    
                            </div>
-                           <div class="card-footer text-muted text-right">
-                               <a href="{{url('/halls/'.$item->id) }}" class="btn btn-primary btn-sm">عرض تفاصيل الصالة</a>
+                           <div class="card-footer text-muted text-right mt-5">
+                               <a href="{{url('/halls/'.$item->halls->id) }}" class="btn btn-primary btn-sm">عرض تفاصيل الصالة</a>
                                <button data-target="#loginModal" data-toggle="modal" class="m-2 btn btn-success btn-sm btn__show__news"
-                                       data-id="{{ $item->id }}">
+                                       data-id="{{ $item->halls->id }}">
                                        تواصل
                              </button>
                            </div>

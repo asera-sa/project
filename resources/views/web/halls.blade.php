@@ -5,7 +5,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="css/images/favicon.ico"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}" type="text/css" media="all" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
@@ -63,8 +63,7 @@
                             </a>
                           </li>
                           <li class="li__search">
-                            <form action="{{ url('/halls/sort') }}" id="form__search" method="get">
-                              @csrf
+                            <form action="{{ url('/halls/sort') }}" id="form__filter" method="get">
                               <select name="filter" class="form-control input__filter" style="display: none; margin-top: 4px !important">
                                   <option value="0">فرز بالأعلى سعرا  </option>
                                   <option value="1">فرز بالأقل سعرا  </option>
@@ -97,16 +96,15 @@
                                 @csrf
                                 <input class="form-control input__search" style="display: none;margin-top: 4px !important;" name="search" type="text" placeholder="Search">
                               </form>
-
                             </li>
                             <li class="li__search">
                               <a class="btn white btn__search show" href="{{ url('/halls') }}" >
                                 <i class="fas fa-search"></i>
                               </a>
                             </li>
-                            <li >
-                              <form action="{{ url('/halls/sort') }}" id="form__search" method="get">
-                                @csrf
+                            <li>
+                              <form action="{{url('/halls/sort')}}" id="form__filter" method="get">
+                                
                                 <select name="filter" class="form-control input__filter" style="display: none; margin-top: 4px !important">
                                   <option value="0">فرز بالأعلى سعرا  </option>
                                   <option value="1">فرز بالأقل سعرا  </option>
@@ -115,7 +113,7 @@
                               </form>
                             </li>
                             <li class="li__search">
-                              <a class="btn white btn__filter show" href="{{ url('/halls/sort') }}" >
+                              <a class="btn white btn__filter show" href="{{url('/halls/sort') }}" >
                                 <i class="fas fa-filter"></i>
                               </a>
                             </li>
@@ -299,6 +297,7 @@
 
         }); 
         $('.btn__search').on('click', function (e) {
+          console.log($('#form__search'));
             e.preventDefault(); // يوقف تحميل الصفحة
             if ($(this).hasClass('show')) { // اذا كلاس  موجود يظهر حقل اﻹدخال ويحذف الكلاس
               $('.input__search').fadeIn('slow');
@@ -307,15 +306,18 @@
               $('#form__search').submit();
             }
         });
+
         $('.btn__filter').on('click', function (e) {
-          e.preventDefault(); // يوقف تحميل الصفحة
+          console.log($('#form__filter'));
+            e.preventDefault(); // يوقف تحميل الصفحة
             if ($(this).hasClass('show')) { // اذا كلاس  موجود يظهر حقل اﻹدخال ويحذف الكلاس
               $('.input__filter').fadeIn('slow');
               $(this).removeClass('show');
             } else { 
-              $('#form__search').submit();
+              $('#form__filter').submit();
             }
         });
+
         
     </script>
 </body>

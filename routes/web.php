@@ -54,7 +54,7 @@ use Illuminate\Http\Request;
 
 
         Route::get('/bills/', 'billsController@index');
-        Route::post('/bills', 'billsController@store');//ادريس
+        Route::post('/bills', 'billsController@store');
         Route::get('/bills/create/{id}', 'billsController@create');
         Route::delete('/bills/{id}', 'billsController@delete');
 
@@ -101,7 +101,7 @@ use Illuminate\Http\Request;
     
     Route::get('/halls','pagewebController@halls');
     Route::post('/halls','pagewebController@search');
-    Route::post('/halls/sort','pagewebController@sort');
+    Route::get('/halls/sort','pagewebController@sort');
     
     Route::get('/halls/{id}','pagewebController@showhalls');
     Route::get('/reservation/create/{id}','pagewebController@createRes');

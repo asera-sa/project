@@ -21,6 +21,8 @@ use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 
+Use Alert;
+
 class pagewebController extends Controller
 {
 
@@ -83,9 +85,12 @@ class pagewebController extends Controller
             $users = User::where('halls_id','=',request('halls_id'))->where('prive', 1)->get();
             $tokens = User::where('prive', 1)->pluck('fcm_token')->toArray();
         }
-        Notification::send($users, new AdminContactNotify("لديك رسالة جديدة",request("title"),request("content") ));
         
-        $this->boradcastNotify('مراسلة من موقع', "لديك رسالة جديدة", $tokens);
+        Notification::send($users, new AdminContactNotify("لديك رسالة جديدة",request("title"),request("content") ));
+        try {
+            $this->boradcastNotify('مراسلة من موقع', "لديك رسالة جديدة", $tokens);
+        } catch (\Exception $ex) {
+        }
         return redirect()->back()->with('success','تم الإرسال بنجاح ');
     }
 
@@ -144,27 +149,34 @@ class pagewebController extends Controller
         ]);
     }
 
-    public function sort()
+    public function sort(Request $request)
     {
-        return '4';
-        $num =require("filter");
-        dd($num);
+      
+        $num =request("filter");
+     //   dd($num);
         if($num == 0)
         {
+            $result = occasions::with('halls')->orderby('st_fr_price','DESC')->get();//تصاعدي;
+            return view('web.resultsort')->with([
+                 'result' => $result,
+             ]);
         }
         else if($num ==1)
         {
-            $result = occasions::orderby('st_fr_price','ASC')->get();//تصاعدي;
-            
+           $result = occasions::with('halls')->orderby('st_fr_price','ASC')->get();//تصاعدي;
+           return view('web.resultsort')->with([
+                'result' => $result,
+            ]);
         }
         else
         {
-
+            $result=halls::orderby('name','ASC')->get();
+            return view('web.resultsearch')->with([
+                'result' => $result,
+            ]);
         }
         
-        return view('web.resultsearch')->with([
-            'result' => $result,
-        ]);
+       
     }
     public function showhalls($id)//صفحة لقاعة
     {
@@ -191,11 +203,16 @@ class pagewebController extends Controller
     {
         $customer = customer::all();
         $occasions = occasions::all();
-        $serviceshalls = halls::with('services')->where('id','=',$id)->first();
+       // $serviceshalls = halls::with('services')->where('id','=',$id)->first();
+     //   $services = services::with('halls')->where('halls_id','=',$id)->first();
+        $services = services::with('halls')->where('halls_id','=',$id)->get();
+
+     //   dd($services);
         return view('web.createRes')->with([
-            'customer' => $customer,
+            'customer' => session()->get('customers.res'),
             'occasions' => $occasions,
-            'serviceshalls' => $serviceshalls,
+            'services' => $services,
+            'id' => $id,
         ]);
     }
 
@@ -212,7 +229,8 @@ class pagewebController extends Controller
 
         $id=customer::max('id');
         $customer = customer::find($id);
-        return redirect()->back()->with('success',':  رقم الزبون هو'.$customer->number);
+        session()->put('customers.res', $customer->number);
+        return redirect()->back();
     }
 
     public function insertRes($id)
@@ -223,7 +241,7 @@ class pagewebController extends Controller
         $reser = reservation::where('date','=',$reserdate)->where('halls_id','=',$id)->where('time','=',$resertime)->first();
         request()->validate([
             'date'                  =>'required',        
-            'occasions_id'                  =>'required',        
+            'occasions_id'          =>'required',        
             'time'                  =>'required',        
         ]);
         if($reser != null)
@@ -274,7 +292,9 @@ class pagewebController extends Controller
                 }
                 $id=reservation::max('id');
                 $reservation = reservation::find($id);
-                return redirect()->back()->with('success',':  رقم الحجز هو'.$reservation->num);
+                session()->forget('customers.res');
+                Alert::success('تم الحجز بنجاح', 'رقم الحجز هو : ' . $reservation->num);
+                return redirect()->back();
 
             }
     

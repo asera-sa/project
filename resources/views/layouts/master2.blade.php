@@ -11,6 +11,7 @@
 	</head>
 	
 	<body class="main-body bg-primary-transparent">
+		@include('sweetalert::alert')
 		<!-- Loader -->
 		<div id="global-loader">
 			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">

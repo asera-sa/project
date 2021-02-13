@@ -13,7 +13,7 @@ class messageController extends Controller
     {
         $id=auth()->user()->halls_id;
 
-        $messages=messages::where('halls_id','=',$id)->get();
+        $messages=messages::where('halls_id','=',$id)->orderby('created_at','DESC')->get();
         return view('messages.index')->with([
             'messages' => $messages,
         ]);

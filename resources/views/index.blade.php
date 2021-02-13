@@ -36,7 +36,7 @@
 @endsection
 
 @section('content')
-kkk
+
 				{{-- <!-- row -->
 				<div class="row row-sm">
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">

@@ -117,7 +117,7 @@
               <div class="card">
                    <img class="card-img-top" src="{{asset($halls1->file)}}"  style="height:14rem;">
                    <div class="card-body text-right">
-                       <h5 class="card-title">{{$halls1->name}}111</h5>
+                       <h5 class="card-title">{{$halls1->name}}</h5>
                    </div>
                    
               </div>
@@ -147,7 +147,7 @@
         <div class="card">
             <img class="card-img-top" src="{{asset($halls2->file)}}" style="height:14rem;">
             <div class="card-body text-right">
-                  <h5 class="card-title">{{$halls2->name}}2222</h5>
+                  <h5 class="card-title">{{$halls2->name}}</h5>
             </div>  
         </div> 
       </div>
@@ -157,7 +157,7 @@
           <div class="card">
               <img class="card-img-top" src="{{asset($halls3->file)}}" style="height:14rem;">
               <div class="card-body text-right">
-                    <h5 class="card-title">{{$halls3->name}}3333</h5>
+                    <h5 class="card-title">{{$halls3->name}}</h5>
               </div>  
           </div> 
         </div>
@@ -167,8 +167,7 @@
   </div>
 
     
-  </div>
-  </div>
+  =
   
   <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
     © 2021 Copyright:

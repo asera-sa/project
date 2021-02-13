@@ -154,13 +154,13 @@
                         <div class="form-group row">
                             <label class="col-sm-2 control-label">الهاتف</label>
                             <div class="col-sm-10">
-                            <input type="text" name="uphone" value="{{old('phone')}}" class="form-control" >
+                               <input type="text" name="uphone" value="{{old('phone')}}" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 control-label">العنوان</label>
                             <div class="col-sm-10">
-                            <input type="text" name="uaddress" value="{{old('address')}}" class="form-control" >
+                               <input type="text" name="uaddress" value="{{old('address')}}" class="form-control" >
                             </div>
                         </div>                      
                       

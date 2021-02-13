@@ -36,6 +36,7 @@
 		firebase.analytics();
 	</script>
 	<body class="main-body app sidebar-mini">
+		@include('sweetalert::alert')
 		<!-- Loader -->
 		<div id="global-loader">
 			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">

@@ -11,11 +11,33 @@
 		color: #000!important;
 	} */
 	/* style="background-color:#6d064b; */
+	.side-menu__item.active .side-menu__label,
+	.side-menu__item.active .angle,
+	.side-menu__item:hover .side-menu__label,
+	.slide.is-expanded .side-menu__label, 
+	.slide.is-expanded .side-menu__icon, 
+	.slide.is-expanded .angle,
+	.side-menu__item:hover .angle,
+	.slide-item.active, .slide-item:hover, .slide-item:focus,
+	.app-sidebar .slide-menu a.active:before {
+		color: #000 !important;
+	}
+	.app-sidebar .slide .side-menu__item.active::before {
+		background: #000 !important
+	}
+	
+	.slide:hover .side-menu__label, .slide:hover .angle, .slide:hover .side-menu__icon {
+		fill: #000 !important;
+	}
+	.side-menu__item i:before {
+		color: #fff !important;
+	}
+	
 
 </style>
 <!-- main-sidebar -->
 		<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-		<aside class="app-sidebar sidebar-scroll " style="background-color:#394263;">
+		<aside class="app-sidebar sidebar-scroll " style="background:linear-gradient(to bottom left, #99004d 0%, #ff3399 100%)">
 			<div class="main-sidebar-header active">
 				<h6 class="desktop-logo logo-light active" href="{{ url('/') }}">	
 					 

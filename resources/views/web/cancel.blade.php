@@ -98,7 +98,8 @@
   </div>
    <div class="container" dir="rtl" class="text-right">
     @include('_session')  
-         <div class="row">    
+         <div class="row">
+             @if($reser->count() > 0)    
             <div class="col-md-12 col-md-offset-6">
                 <div class="table-responsive">
                     {{-- <table class="table text-md-nowrap" id="ex" > --}}
@@ -128,7 +129,11 @@
                         </tbody>
                     </table>
                 </div>
-            </div>    
+            </div>                 
+            @else
+            <div class="col-md-2 col-md-offset-6"></div>
+                <h3 class="center m-5">لايوجد حجوزات ملغية</h3>  
+            @endif
          </div>
          
    </div>
