@@ -2,6 +2,8 @@
 @section('css')
 <!--- Internal Select2 css-->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+<link href="{{asset('map/plugins/custom/leaflet/leaflet.bundle.css')}}" rel="stylesheet" type="text/css" />
+
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -30,6 +32,9 @@
 								<div id="wizard3">
 									<h3 style="color: blue;" >بيانات الصالة</h3><br>
 									<section>
+										<input type="hidden" name="lat" placeholder="lat" id="lat"> <br>
+                                        <input type="hidden" name="lng" placeholder="lng" id="lng">
+    
 										<div class="control-group form-group">
 											<label class="form-label">اسم الصالة </label>
 											<input type="text" class="form-control required" placeholder="اسم الصالة" name="name">
@@ -64,6 +69,28 @@
                                         <div class="control-group form-group mb-0">
 											<label class="form-label">سعة الصالة </label>
 											<input type="number" class="form-control required" name="capacity" placeholder="سعة الصالة">
+										</div>
+										<div class="control-group form-group mb-0">
+
+										  <!--begin::Card-->
+                                           <div class="card card-custom gutter-b example example-compact mt-2">
+                                               <div class="card-header">
+                                                   <div class="card-title">
+                                                       <h3 class="card-label text-right"> اختر موقع الصالة </h3>
+                                                   </div>
+                                               </div>
+                                               <div class="card-body">
+                                                   <div id="kt_leaflet_5" style="height:300px;"></div>
+                                                   <!--begin::Code-->
+                                                   <div class="example-code mt-5">
+                                                       <ul class="example-nav nav nav-tabs nav-bold nav-tabs-line nav-tabs-line-2x">
+                                                          
+                                                       </ul>
+                                                   </div>
+                                                   <!--end::Code-->
+                                               </div>
+                                            </div>
+                                            <!--end::Card-->
 										</div>
 									</section>
 									
@@ -156,4 +183,12 @@
 
 	});
 </script>
+{{-- <script src="{{asset('map/plugins/global/plugins.bundle.js')}}"></script> --}}
+<script src="{{asset('map/plugins/custom/prismjs/prismjs.bundle.js')}}"></script> 
+<script src="{{asset('map/js/scripts.bundle.js')}}"></script>
+<!--end::Global Theme Bundle-->
+<!--begin::Page Vendors(used by this page)-->
+<script src="{{asset('map/plugins/custom/leaflet/leaflet.bundle.js')}}"></script>
+
+<script src="{{asset('js/maps/mapCreat.js')}}"></script>
 @endsection

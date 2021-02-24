@@ -312,13 +312,15 @@ class pagewebController extends Controller
   
     public function inserthalls()
     {
-        
+        // dd(request("lat"));
         request()->validate([
             'name'    => 'required|string',
             'email'   => 'required|string',
-            'address' => 'required|string',
             'phone'   => 'required|string',
-           'file'     => 'required|image|mimes:png,jpg,jpeg,svg'
+             'file'     => 'required|image|mimes:png,jpg,jpeg,svg',
+             'lat'   => 'required',
+             'lng'   => 'required'
+
         ]);
  
         $halls =new halls;
@@ -336,6 +338,8 @@ class pagewebController extends Controller
         $halls->Address_id=request('Address_id');
         $halls->capacity=request('capacity');
         $halls->state=1;
+        $halls->lat=request('lat');
+        $halls->lng=request('lng');
 
          $halls->save();
          $id=halls::max('id');

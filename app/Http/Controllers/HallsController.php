@@ -41,9 +41,10 @@ class HallsController extends Controller
         request()->validate([
             'name'    => 'required|string',
             'email'   => 'required|string',
-            'address' => 'required|string',
             'phone'   => 'required|string',
-           'file'     => 'required|image|mimes:png,jpg,jpeg,svg'
+             'file'     => 'required|image|mimes:png,jpg,jpeg,svg',
+             'lat'   => 'required',
+             'lng'   => 'required'
         ]);
  
         $halls =new halls;
@@ -62,7 +63,8 @@ class HallsController extends Controller
         $halls->Address_id=request('Address_id');
         $halls->capacity=request('capacity');
         $halls->state=1;
-
+        $halls->lat=request('lat');
+        $halls->lng=request('lng');
          $halls->save();
          $id=halls::max('id');
          $user =new User;
@@ -107,9 +109,10 @@ class HallsController extends Controller
         request()->validate([
             'name'    => 'required|string',
             'email'   => 'required|string',
-            'address' => 'required|string',
             'phone'   => 'required|string',
-            'file'    => 'image|mimes:png,jpg,jpeg,svg'
+            'file'    => 'image|mimes:png,jpg,jpeg,svg',
+            'lat'   => 'required',
+            'lng'   => 'required'
         ]);
 
         $halls = halls::findorfail($id);
@@ -130,7 +133,8 @@ class HallsController extends Controller
         $halls->Address_id=request('Address_id');
         $halls->capacity=request('capacity');
         $halls->state=1;
-
+        $halls->lat=request('lat');
+        $halls->lng=request('lng');
         $halls->save();
          
          $halls = halls::find($id);  

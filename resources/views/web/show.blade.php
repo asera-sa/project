@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
     <link href='{{URL::asset("/assets/fullcalendar/assets/css/fullcalendar.css")}}' rel='stylesheet' />
     <link href='{{URL::asset("/assets/fullcalendar/assets/css/fullcalendar.print.css")}}' rel='stylesheet' media='print' />
+		<link href="{{asset('map/plugins/custom/leaflet/leaflet.bundle.css')}}" rel="stylesheet" type="text/css" />
 
     <style>
       body,h1,h2,h3,h4,h5,h6 {
@@ -246,8 +247,27 @@
               @endforeach
         </div>
     </div>
-
-
+    <div class="container" dir="rtl" class="text-right" >
+       <!--begin::Card-->
+        <div class="card card-custom gutter-b example example-compact mt-2">
+            <div class="card-header">
+            <div class="card-title">
+                <h3 class="card-label text-right">  موقع الصالة </h3>
+            </div>
+            </div>
+            <div class="card-body">
+            <div id="kt_leaflet_5" style="height:300px;"></div>
+            <!--begin::Code-->
+            <div class="example-code mt-5">
+                <ul class="example-nav nav nav-tabs nav-bold nav-tabs-line nav-tabs-line-2x">
+                   
+                </ul>
+            </div>
+            <!--end::Code-->
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
 
     <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
            <p class="lf">Copyright &copy; 2020 <a href="#">أفـراحنـا</a> </p>
@@ -262,7 +282,6 @@
   <script>
   
         $(document).ready(function() {
-          
             var date = new Date();
             var d = date.getDate(); // اليوم الحالي
             var m = date.getMonth(); // الشهر الحالي 
@@ -356,9 +375,16 @@
        $('.modal .modal-body p').text($(this).data('content'));
 
        });
-       
  </script>
-
+ {{-- <script src="{{asset('map/plugins/global/plugins.bundle.js')}}"></script> --}}
+ <script src="{{asset('map/plugins/custom/prismjs/prismjs.bundle.js')}}"></script> 
+ <script src="{{asset('map/js/scripts.bundle.js')}}"></script>
+ <script>
+    	var lat={{$halls->lat}};
+			var lng={{$halls->lng}};
+ </script>
+  <script src="{{asset('map/plugins/custom/leaflet/leaflet.bundle.js')}}"></script>
+<script src="{{asset('js/maps/mapShow.js')}}"></script>
 
 </body>
 

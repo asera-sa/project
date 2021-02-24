@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
+<link href="{{asset('map/plugins/custom/leaflet/leaflet.bundle.css')}}" rel="stylesheet" type="text/css" />
 
 <br><br>  
         <!-- Main content -->
@@ -87,6 +88,29 @@
                     </div> <!-- End row -->
 
                 </div>
+
+
+                <div class="container" dir="rtl" class="text-right" >
+                    <!--begin::Card-->
+                     <div class="card card-custom gutter-b example example-compact mt-2">
+                         <div class="card-header">
+                         <div class="card-title">
+                             <h3 class="card-label text-right">  موقع الصالة </h3>
+                         </div>
+                         </div>
+                         <div class="card-body">
+                         <div id="kt_leaflet_5" style="height:300px;"></div>
+                         <!--begin::Code-->
+                         <div class="example-code mt-5">
+                             <ul class="example-nav nav nav-tabs nav-bold nav-tabs-line nav-tabs-line-2x">
+                                
+                             </ul>
+                         </div>
+                         <!--end::Code-->
+                         </div>
+                     </div>
+                     <!--end::Card-->
+                </div>
             @else
             <h3 class="m-5">خطأ ,  لايوجد بيانات لعرضها </h3>
             @endif
@@ -96,4 +120,13 @@
     <!-- Container closed -->
     </div>
     <!-- main-content closed -->
+    <script src="{{asset('map/plugins/global/plugins.bundle.js')}}"></script>
+ <script src="{{asset('map/plugins/custom/prismjs/prismjs.bundle.js')}}"></script> 
+ <script src="{{asset('map/js/scripts.bundle.js')}}"></script>
+ <script>
+    	var lat={{$halls->lat}};
+		var lng={{$halls->lng}};
+ </script>
+  <script src="{{asset('map/plugins/custom/leaflet/leaflet.bundle.js')}}"></script>
+<script src="{{asset('js/maps/mapShow.js')}}"></script>
  @endsection

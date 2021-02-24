@@ -113,6 +113,10 @@ use Illuminate\Http\Request;
     
     Route::get('/canelReservation','pagewebController@cancelres');
     Route::post('/canelReservation','pagewebController@delres');
+   
+    Route::get('/rr', function(){
+        return view('leaflet');
+    });
     
 
 // Auth::routes();

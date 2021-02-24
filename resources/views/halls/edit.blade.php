@@ -8,6 +8,8 @@
 <link href="{{URL::asset('assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
 <!-- Internal Spectrum-colorpicker css -->
 <link href="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
+<link href="{{asset('map/plugins/custom/leaflet/leaflet.bundle.css')}}" rel="stylesheet" type="text/css" />
+
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -30,6 +32,8 @@
                 @method('PUT') 
             
             	<div class="card-body">
+                    <input type="hidden" name="lat" placeholder="lat" id="lat"> <br>
+                    <input type="hidden" name="lng" placeholder="lng" id="lng">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">الإسم</label>
                         <div class="col-sm-10">
@@ -58,12 +62,7 @@
                                 @foreach ($Address as $item)
                                 <option value="{{$item->id}}"  {{$halls->Address_id==$item->id  ? 'selected' : ' ' }}>{{$item->name}}</option>  
                                 @endforeach
-                            </select>                           </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">العنوان</label>
-                        <div class="col-sm-10">
-                        <input type="text" name="address" value="{{$halls->address}}" class="form-control" autocomplete="on">
+                            </select>                    
                         </div>
                     </div>
                     <div class="form-group">
@@ -84,7 +83,27 @@
                         <input type="number" name="capacity" value="{{$halls->capacity}}" class="form-control" autocomplete="on">
                         </div>
                     </div>
-                    
+                    <div class="form-group">
+                         <!--begin::Card-->
+                         <div class="card card-custom gutter-b example example-compact mt-2">
+                             <div class="card-header">
+                                 <div class="card-title">
+                                     <h3 class="card-label text-right"> اختر موقع الصالة </h3>
+                                 </div>
+                             </div>
+                             <div class="card-body">
+                                 <div id="kt_leaflet_5" style="height:300px;"></div>
+                                 <!--begin::Code-->
+                                 <div class="example-code mt-5">
+                                     <ul class="example-nav nav nav-tabs nav-bold nav-tabs-line nav-tabs-line-2x">
+                                        
+                                     </ul>
+                                 </div>
+                                 <!--end::Code-->
+                             </div>
+                         </div>
+                         <!--end::Card-->
+                    </div>
             	</div>
             	<!-- /.card-body -->
             	<div class="card-footer">
@@ -134,6 +153,16 @@
         } // End if
     });
 </script>
+
+<script src="{{asset('map/plugins/global/plugins.bundle.js')}}"></script>
+<script src="{{asset('map/plugins/custom/prismjs/prismjs.bundle.js')}}"></script> 
+<script src="{{asset('map/js/scripts.bundle.js')}}"></script>
+<!--end::Global Theme Bundle-->
+<!--begin::Page Vendors(used by this page)-->
+<script src="{{asset('map/plugins/custom/leaflet/leaflet.bundle.js')}}"></script>
+
+<script src="{{asset('js/maps/mapCreat.js')}}"></script>
+      
 @endsection
 
 
