@@ -33,15 +33,13 @@
                     <ul class="navbar-nav mr-auto mt-2 " >
                       @guest
                            <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
-                           <li><a href="{{url('about')}}" > عن الموقع </a></li>
                            <li><a href="{{url('/halls')}}"  > قاعات الأفراح</a></li>
                            <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                            <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
                            <li><a href="{{url('/login')}}" class="active"> دخول </a></li>
                       @else
                             <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
-                            <li><a href="{{url('about')}}" > عن الموقع </a></li>
-                            <li><a href="{{url('/halls')}}"  > قاعات الأفراح</a></li>
+                             <li><a href="{{url('/halls')}}"  > قاعات الأفراح</a></li>
                             <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                             <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
                             @if(auth()->user()->prive == 1)
