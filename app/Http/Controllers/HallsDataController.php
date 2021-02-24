@@ -18,7 +18,7 @@ class HallsDataController extends Controller
     {
         $id=auth()->user()->halls_id;
         // $serviceshalls = halls::with('services')->where('id','=',$id)->first();
-        $services=services::all();
+        $services=services::where('halls_id','=',$id)->get();
         return view('hallsData.hallsServices')->with([
              'services' => $services,
             //  'serviceshalls' => $serviceshalls,
