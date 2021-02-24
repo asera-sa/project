@@ -28,7 +28,8 @@ class employeesController extends Controller
 
     public function create()
     {
-        $jobs=jobs::all();
+        $id = auth()->user()->halls_id ;
+        $jobs=jobs::where('halls_id','=',$id)->get();
         return view('employee.create')->with([
             'jobs' => $jobs,
         ]);

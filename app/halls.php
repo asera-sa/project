@@ -15,6 +15,10 @@ class halls extends Model
     {
         return $this->hasMany(services::class);
     }  
+    public function jobs()
+    {
+        return $this->hasMany(jobs::class);
+    } 
 
     public function user()
     {

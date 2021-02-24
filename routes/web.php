@@ -42,6 +42,9 @@ use Illuminate\Http\Request;
         Route::get('/hallOccasions', 'HallsDataController@indexO');//صفحة مناسبات الصالة
         Route::post('/hallOccasions', 'HallsDataController@storeO');
         Route::delete('/hallOccasions/{id}', 'HallsDataController@destroyO');
+        Route::get('/hallJobs', 'HallsDataController@indexJ');//صفحة وظائف الصالة
+        Route::post('/hallJobs', 'HallsDataController@storeJ');
+        Route::delete('/hallJobs/{id}', 'HallsDataController@destroyJ');
 
 
         Route::get('/news', 'newsController@index');

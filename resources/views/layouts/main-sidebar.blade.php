@@ -121,6 +121,7 @@
 							<li><a class="slide-item text-white" href="{{url('/admin/halls/'.$id)}}"> بيانات الصالة </a></li>
 							<li><a class="slide-item text-white" href="{{ url('/admin/hallServies') }}"> خدمات الصالة </a></li>
 							<li><a class="slide-item text-white" href="{{ url('/admin/hallOccasions') }}"> مناسبات الصالة </a></li>
+							<li><a class="slide-item text-white" href="{{ url('/admin/hallJobs') }}"> وظائف الصالة </a></li>
 							<li><a class="slide-item text-white" href="{{ url('/admin/news') }}"> الإعلانات </a></li>
 							<li><a class="slide-item text-white" href="{{ url('/admin/pic') }}"> صور الموقع </a></li>
 						</ul>

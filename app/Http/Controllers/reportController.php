@@ -18,7 +18,7 @@ class reportController extends Controller
     public function index()
     {
         $id = auth()->user()->halls_id;
-        $jobs = jobs::all();
+        $jobs = jobs::where('halls_id','=',$id)->get();
         $reservation = reservation::where('halls_id','=',$id)->get();
         $employees = employees::groupBy('salary')->where('halls_id','=',$id)->get();
         return view('report.index')->with([

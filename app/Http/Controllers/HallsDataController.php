@@ -7,9 +7,11 @@ use App\services;
 use App\halls;
 use App\occasions;
 use App\reservation;
+use App\jobs;
 
 class HallsDataController extends Controller
 {
+    
     public function __construct() {
        // $this->middleware('check_owner');
     }
@@ -24,6 +26,7 @@ class HallsDataController extends Controller
             //  'serviceshalls' => $serviceshalls,
         ]);
     }
+
     public function storeS(Request $request)
     {
         // $id=auth()->user()->halls_id;
@@ -59,7 +62,6 @@ class HallsDataController extends Controller
         //     return redirect()->back()->with('error',' لايمكن حدف الخدمة  ');
         // }
     }
-
 /*---------------------المناسبات----------------------*/
 
     public function indexO()
@@ -102,6 +104,36 @@ class HallsDataController extends Controller
         }
     }
 
-    /*---------------------الصور----------------------*/
+    /*---------------------الوظائف----------------------*/
+    public function indexJ()
+    {
+        $id=auth()->user()->halls_id;
+        $jobs = jobs::with('halls')->where('halls_id','=',$id)->get();
+        return view('hallsData.halljobs')->with([
+            'jobs' => $jobs,
+        ]);
+    }
+    
+    public function storeJ(Request $request)
+    {
+       
+        $id=auth()->user()->halls_id;
+        $jobs = new jobs;
+        
+        $jobs->name_job= request("name_job");
+        $jobs->halls_id= $id;
+        $jobs->save();
+        return redirect()->back();
+    }
+
+    public function destroyJ($id)
+    {
+      //  dd($id);
+        $jobs = jobs::find($id); 
+     
+            $jobs->delete();
+            return redirect()->back();
+       
+    }
   
 }

@@ -10,4 +10,9 @@ class jobs extends Model
     {
         return $this->hasMany(employees::class);
     }
+
+    public function halls()
+    {
+        return $this->belongsTo(halls::class);
+    } 
 }
