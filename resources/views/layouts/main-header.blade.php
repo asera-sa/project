@@ -1,5 +1,5 @@
 <!-- main-header opened -->
-			<div class="main-header sticky side-header nav nav-item" style="background:linear-gradient(to bottom left, #99004d 0%, #ff3399 100%);">
+			<div class="main-header sticky side-header nav nav-item" style="background-color: rgb(33, 34, 61)">
 				<div class="container-fluid " >
 					<div class="main-header-left">
 						<div class="app-sidebar__toggle " data-toggle="sidebar">

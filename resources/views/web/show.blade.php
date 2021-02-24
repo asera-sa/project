@@ -111,19 +111,11 @@
     <div class="container" dir="rtl" class="text-right">
       <div class="row text-right" >
                 <div class="col-md-8 col-md-offset-4 mt-3">
-  
-
-
+ 
                   <div id='wrap' style="width: 100% !important;">
                     <div id='calendar' style="width: 100% !important;"></div>                    
                     <div style='clear:both'></div>
-                  </div>
-              
-
-
-
-
-
+                  </div>         
                   
                 </div>
                 <div class="col-md-4 col-md-offset-4 mt-3">
@@ -176,6 +168,8 @@
       <div class="row">
                 <div class="col-md-8 col-md-offset-4 mt-3" >
                     <div class="table-responsive">
+                      @if($occasions->count() == 0)
+                      @else
                            <table class="table table-striped mg-b-0 text-md-nowrap" id="ex">
                                <thead>
                                    <th  class="border-bottom-0"> # </th>
@@ -194,10 +188,14 @@
                                     @endforeach                                    
                                </tbody>
                            </table>
+                      @endif
                     </div>
                 </div>
                 <div class="col-md-4 col-md-offset-4 mt-3" >
-                  <div class="table-responsive">
+                  
+                  @if($services->count() == 0)
+                  @else
+                   <div class="table-responsive">
                          <table class="table table-striped mg-b-0 text-md-nowrap" id="ex">
                              <thead>
                                  <th  class="border-bottom-0"> # </th>
@@ -214,8 +212,10 @@
                                  @endforeach
                              </tbody>
                          </table>
-                  </div>
-                 </div>
+                   </div>
+                  @endif
+                </div>
+
                
                 
       </div>
@@ -225,6 +225,13 @@
     <div class="container" dir="rtl" class="text-right mt-2" >
         <a href="{{url('/reservation/create/'.$halls->id) }}"  class="btn btn-block btn-outline-success btn-lg">  حجز جديد </a>
     </div>
+{{-- 
+    <div id="google-map" class="text-center mb-5"> 
+      <iframe src="{{asset($item->location)}}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>                
+    </div> --}}
+
+
+
 
 
     {{-- الصور --}}
@@ -243,7 +250,7 @@
 
 
     <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
-      © 2021 Copyright:
+           <p class="lf">Copyright &copy; 2020 <a href="#">أفـراحنـا</a> </p>
     </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -255,6 +262,7 @@
   <script>
   
         $(document).ready(function() {
+          
             var date = new Date();
             var d = date.getDate(); // اليوم الحالي
             var m = date.getMonth(); // الشهر الحالي 
@@ -348,6 +356,7 @@
        $('.modal .modal-body p').text($(this).data('content'));
 
        });
+       
  </script>
 
 

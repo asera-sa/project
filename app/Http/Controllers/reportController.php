@@ -17,9 +17,10 @@ class reportController extends Controller
      
     public function index()
     {
+        $id = auth()->user()->halls_id;
         $jobs = jobs::all();
-        $reservation = reservation::all();
-        $employees = employees::groupBy('salary')->get();
+        $reservation = reservation::where('halls_id','=',$id)->get();
+        $employees = employees::groupBy('salary')->where('halls_id','=',$id)->get();
         return view('report.index')->with([
             'employees' => $employees,
             'jobs' => $jobs,
@@ -28,8 +29,9 @@ class reportController extends Controller
     }
 
     public function allEmp()
-    {
-        $employee = employees::all();
+    {        
+        $id = auth()->user()->halls_id ;
+        $employee = employees::where('halls_id','=',$id)->get();
         $title ="قائمة بأسماء جميع الموظفين";
         $value ="";
         return view('report.allEmpView')->with([
@@ -41,10 +43,11 @@ class reportController extends Controller
 
     public function allEmp_jobs()
     {
+        $id = auth()->user()->halls_id;     
         $jobs_id = request("jobs_id");
         $v= jobs::where('id','=',$jobs_id)->first();
         $value=$v->name_job;
-        $employee = employees::where('jobs_id','=',$jobs_id)->get();
+        $employee = employees::where('jobs_id','=',$jobs_id)->where('halls_id','=',$id)->get();
         $title = "قائمة بأسماء الموظفين التابعين لـ" ; 
     
         return view('report.allEmpView')->with([
@@ -56,8 +59,9 @@ class reportController extends Controller
 
     public function allEmp_salary()
     {
+        $id = auth()->user()->halls_id;
         $value = request("salary");
-        $employee = employees::where('salary','=',$value)->get();
+        $employee = employees::where('salary','=',$value)->where('halls_id','=',$id)->get();
         $title = " قائمة بأسماء الموظفين الدين رواتبهم ";
         return view('report.allEmpView')->with([
             'employee' => $employee,
@@ -76,7 +80,6 @@ class reportController extends Controller
             
         $i = auth()->user()->halls_id ;
         $halls = halls::where('id','=',$i)->first();
-
         $reservation = reservation::with('customer','occasions')->where('id','=',$id)->first();
         $servicesReservation = reservation::with('services')->where('id','=',$id)->first();
         return view('report.billsView')->with([

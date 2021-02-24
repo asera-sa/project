@@ -22,12 +22,9 @@
         animation:none!important;
         /* animation:none; */
       }      
-
     </style>
 </head>
-<body dir="rtl">
-
-  
+<body dir="rtl">  
   <div id="header">
           <img src="{{asset('css/images/logo.jpg')}}"  style="width:20rem; height:4rem; margin-top:2rem; margin-left:8rem;"  alt="">
           <nav id="navigation"  class="navbar navbar-expand-lg navbar-light ">
@@ -70,105 +67,95 @@
   </div>
   
   <div class="container mt-5" dir="rtl" class="text-right" >
-      <div class="row">
-          <div class="col-md-12 col-md-offset-4 mt-1 w-100" >
+    <div class="row shell" >        
+            <div class="slider-right">
               <div id="carouselExampleControls" class="carousel slide w-100 p-3" data-ride="carousel">
-                <div class="carousel-inner w-100">
-                     <div class="carousel-item active">
-                       <img class="d-block w-100" src={{asset('css/images/1.jpg')}} style="height:25rem;"   alt="First slide">
-                     </div>
-                     <div class="carousel-item">
-                       <img class="d-block w-100" src={{asset('css/images/2.jpg')}} style="height:25rem;"   alt="Second slide">
-                     </div>
-                     <div class="carousel-item">
-                       <img class="d-block w-100" src={{asset('css/images/4.jpg')}} style="height:25rem;"   alt="Third slide">
-                     </div>
-                   </div>
-                   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="sr-only">Previous</span>
-                   </a>
-                   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="sr-only">Next</span>
-                   </a>
-                 </div>
+                    <div class="carousel-inner w-100">
+                                <div class="carousel-item active">
+                                  <img class="d-block w-100" src={{asset('css/images/1.jpg')}} style=""   alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                  <img class="d-block w-100" src={{asset('css/images/2.jpg')}} style=""   alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                  <img class="d-block w-100" src={{asset('css/images/4.jpg')}} style=""   alt="Third slide">
+                                </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                       <span class="sr-only">Next</span>
+                    </a>
               </div>
-        </div>
-      </div>
-  </div>
-  <div class="container mt-5" dir="rtl" class="text-right" >
-      <div class="row" style="margin-top: 12rem;">
-            <div class="col-md-8 col-md-offset-4 mt-5 shell" >
-                <div class="card mt-5" style=" height:10rem;">
-                  <div class="card-body text-right" style="font-size: 20px;">
-                    <p style="line-height: 35px;">
-                        أن الحجز في الصالات يتم بصورة تقليدية وذلك بحضور الشخص إلى موقع الصالة ومقابلة
-                        موظف الصالة , ويوجد العديد من المشاكل في هذه الطريقة منها .... 
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer text-muted text-right">
-                    <a href="{{url('/about')}}">عن الموقع</a>
-                </div>
-            </div> 
-            @if($halls1 != null)
-            <div class="col-md-4 col-md-offset-4 mt-5" >
-              <div class="card">
-                   <img class="card-img-top" src="{{asset($halls1->file)}}"  style="height:14rem;">
-                   <div class="card-body text-right">
-                       <h5 class="card-title">{{$halls1->name}}</h5>
-                   </div>
-                   
-              </div>
-           
-          </div>
-          @endif
-      </div>
-  </div>
-
-
-  <div class="container mt-5" dir="rtl" class="text-right" >
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4 mt-1 p-3 text-right" style="line-height: 20px;background-color: lightgray;">
-           <h4 dir="rtl">إضافة قاعة أفراح جديدة</h4>
-           <div class="card mt-5" style=" height:10rem;">
-              <div class="card-body text-right" style="font-size: 20px;">
-                  <h6 class="mt-2">
-                     يمكنك تسجيل صالتك الأن لعرض خدماتك وتسهيل عملية الحجز والتواصل معك من خلال موقعنا 
-                  </h6>
-                  <a href="advertising.php" class="btn btn-success text-white"><b> التسجيل</b></a>
-              </div>
-           </div>
-         
-      </div>
-      @if($halls2 != null)
-      <div class="col-md-4 col-md-offset-4" >
-        <div class="card">
-            <img class="card-img-top" src="{{asset($halls2->file)}}" style="height:14rem;">
-            <div class="card-body text-right">
-                  <h5 class="card-title">{{$halls2->name}}</h5>
-            </div>  
-        </div> 
-      </div>
-      @endif
-      @if($halls3 != null)
-      <div class="col-md-4 col-md-offset-4" >
-          <div class="card">
-              <img class="card-img-top" src="{{asset($halls3->file)}}" style="height:14rem;">
-              <div class="card-body text-right">
-                    <h5 class="card-title">{{$halls3->name}}</h5>
-              </div>  
-          </div> 
-        </div>
-      </div>
-      @endif
+            </div>
+            <div class="slider-left">
+              <h2 dir="rtl">إضافة قاعة أفراح جديدة</h2>
+              <p>
+                    في حال رغبتك بإضافة اعلانك يجب عليك ابلاغ إدارة موقع افراحنا قبل انتهاء فترة إعلانك بخمسة ايام على الأقل,
+                    الشروط والأسعار قابلة للتغيير بأي وقت دون أن يترتب على موقع افراحنا أي تعويضات للمعلن
+                    كما انه يحق لموقع افراحنا رفض أي إعلان ودون ابداء الأسباب.         
+              </p>
+              <a href="" class="order-now "> <b> إعلن الان</b></a> 
+            </div>
     </div>
   </div>
+     
 
-    
-  =
+  <div class="container mt-5" dir="rtl" class="text-right" >
+      <div class="row text-right">
+        <div class="col-md-7 last">
+          <div class="post">
+            <h2 dir="rtl" > <b>من نحن </b></h2>
+            <img src="css/images/book.png" style="width:200px;" alt="image" class="right" />
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque, nulla tellus tempus magna, sed consectetur orci metus a justo. Aliquam ac congue nunc. Mauris a tortor ut massa egestas tempus. Pellentesque tincidunt fermentum diam sagittis ullamcorper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque, nulla tellus tempus magna, sed consectetur orci metus a justo. Aliquam ac tellus tempus magna, sed consectetur orci metus a justo. Aliquam ac congue nunc. </p>
+            <div class="cl">&nbsp;</div>
+            <a href="#" class="more text-left">التعرف على المزيد</a> </div>
+          </div>
+          <div class="pr-5 text-container">
+            <img src="css/images/m.jpg" style="width:300px;" alt="image" />
+          </div>
+        </div>
+            
+      </div>
+  </div>
+  <div class="container mt-5" dir="rtl" class="text-right" >
+    <div class="row text-right">
+      <div class="col-md-4 last">
+        <div class="post">
+          <h2 dir="rtl">خدماتنـا</h2>
+          <img src="css/images/post-image4.gif" alt="" class="right" />
+            <p>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, 
+               neque ut imperdiet pellentesque, nulla tellus tempus magna, 
+               sed consectetur orci metus a justo. Aliquam ac congue nunc.
+               Mauris a tortor ut massa egestas Lorem ipsum dolor sit amet,
+               consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque,
+               nulla tellus tempustincidunt fermentum diam sagittis ullamcorper.
+            </p>
+          <a href="#" class="more text-left left">التعرف على المزيد</a>
+          <div class="cl">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-md-4 last">
+        <div class="post">
+         <h2 dir="rtl" >الحجوزات الملغية</h2>
+         <img src="css/images/testt.jpg"style="width:90px; alt="" class="right" />
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque, nulla tellus tempus Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque, nulla tellus tempus magna, sed consectetur orci metus a justo. Aliquam ac congue nunc. </p>
+         <div class="cl">&nbsp;</div>
+         <a href="#" class="more text-left">التعرف على المزيد</a> </div>
+        </div>     
+        <div class="post">
+          <h2 dir="rtl" > <b> قاعات الأفراح </b></h2>
+          <img src="css/images/hall.jpg" style="width:300px;" alt="image" />
+          <p dir="rtl"> <b> من هنا يمكنك الاطلاع على قاعات الافراح ورؤية عروضنا..<a href="hall.php" class="more">التعرف على المزيد</a> </b></div>
+        </div>
+    </div>
+  </div>
   
+
   <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
     © 2021 Copyright:
   </div>
