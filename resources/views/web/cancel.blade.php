@@ -129,14 +129,16 @@
                 </div>
             </div>                 
             @else
-            <div class="col-md-2 col-md-offset-6"></div>
+            <div class="col-md-2 col-md-offset-6" style="margin-bottom: 21rem;"></div>
                 <h3 class="center m-5">لايوجد حجوزات ملغية</h3>  
             @endif
          </div>
          
    </div>
 
-   
+   <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
+       <p class="lf">Copyright &copy; 2020 <a href="#">أفـراحنـا</a> </p>
+   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -160,7 +162,7 @@
   <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
   <!--Internal  Datatable js -->
   <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
-  <script>
+    <script>
        $( function ()
        {
         $('#ex').DataTable({      

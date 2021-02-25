@@ -224,7 +224,7 @@
   </div>
 
   <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
-    © 2021 Copyright:
+    <p class="lf">Copyright &copy; 2020 <a href="#">أفـراحنـا</a> </p>
   </div>
 
 
@@ -261,7 +261,7 @@
   <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
   <!--Internal  Datatable js -->
   <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
-  <script>
+    <script>
        $( function ()
        {
         $('#ex').DataTable({      

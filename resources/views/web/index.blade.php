@@ -92,11 +92,9 @@
             <div class="slider-left">
               <h2 dir="rtl">إضافة قاعة أفراح جديدة</h2>
               <p>
-                    في حال رغبتك بإضافة اعلانك يجب عليك ابلاغ إدارة موقع افراحنا قبل انتهاء فترة إعلانك بخمسة ايام على الأقل,
-                    الشروط والأسعار قابلة للتغيير بأي وقت دون أن يترتب على موقع افراحنا أي تعويضات للمعلن
-                    كما انه يحق لموقع افراحنا رفض أي إعلان ودون ابداء الأسباب.         
+                يعرض الموقع خريطة توضح موقع الصالة , بالإضافة لوجود مساحة خاصة بالإعلانات وعرض الحجوزات الملغية من قبل الزبائن , كما ان هذا البرنامج يستخدم لإدارة قاعات الافراح بطريقة سهلة وسلسة الاستخدام, حيث  يمكن استخدامه من أي جهاز 
               </p>
-              <a href="" class="order-now "> <b> إعلن الان</b></a> 
+              <a href="{{url('/createhalls') }}" class="order-now "> <b> تسجيل الان</b></a> 
             </div>
     </div>
   </div>
@@ -108,9 +106,12 @@
           <div class="post">
             <h2 dir="rtl" > <b>من نحن </b></h2>
             <img src="css/images/book.png" style="width:200px;" alt="image" class="right" />
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque, nulla tellus tempus magna, sed consectetur orci metus a justo. Aliquam ac congue nunc. Mauris a tortor ut massa egestas tempus. Pellentesque tincidunt fermentum diam sagittis ullamcorper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque, nulla tellus tempus magna, sed consectetur orci metus a justo. Aliquam ac tellus tempus magna, sed consectetur orci metus a justo. Aliquam ac congue nunc. </p>
+            <p>
+              أفراحنا هو موقع قام بجمع تفاصيل قاعات الأفراح وعرض مواعيدها ، كما انه يضم العديد من قاعات الأفراح التي تم تسجيلها لتسهيل عمليات البحث عن القاعات وتصفحها والتعرف على خدماتها وحجزها بطريقة سلسة لتسهل على الزبون التواصل والتعامل معها .
+              كما انه يعتبر موقع خدمي واداري الذي بدوره يقوم بادارة الحجوزات ومتابعتها وتسجيل بيانات العاملين والموظفين واصدار التقارير والفواتير وغيرها من الخدمات الادارية.
+            </p>
             <div class="cl">&nbsp;</div>
-            <a href="#" class="more text-left">التعرف على المزيد</a> </div>
+           </div>
           </div>
           <div class="pr-5 text-container">
             <img src="css/images/m.jpg" style="width:300px;" alt="image" />
@@ -121,41 +122,38 @@
   </div>
   <div class="container mt-5" dir="rtl" class="text-right" >
     <div class="row text-right">
-      <div class="col-md-4 last">
+      <div class="col-md-3 last">
         <div class="post">
-          <h2 dir="rtl">خدماتنـا</h2>
-          <img src="css/images/post-image4.gif" alt="" class="right" />
+          <h2 dir="rtl">مميزاتنا</h2>
+          <img src="css/images/fav.png" alt="" class="right" />
             <p>
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, 
-               neque ut imperdiet pellentesque, nulla tellus tempus magna, 
-               sed consectetur orci metus a justo. Aliquam ac congue nunc.
-               Mauris a tortor ut massa egestas Lorem ipsum dolor sit amet,
-               consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque,
-               nulla tellus tempustincidunt fermentum diam sagittis ullamcorper.
+            	سهولة استخدام تطبيقنا سوف يوفر عليك الكثير من الوقت والجهد ويجعلك تصل الى صالتك المفضلة في اسرع وقت
             </p>
-          <a href="#" class="more text-left left">التعرف على المزيد</a>
+          <a href="#" class="more text-left left"> </a>
           <div class="cl">&nbsp;</div>
         </div>
       </div>
-      <div class="col-md-4 last">
+      <div class="col-md-5 last">
         <div class="post">
          <h2 dir="rtl" >الحجوزات الملغية</h2>
          <img src="css/images/testt.jpg"style="width:90px; alt="" class="right" />
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque, nulla tellus tempus Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque ut imperdiet pellentesque, nulla tellus tempus magna, sed consectetur orci metus a justo. Aliquam ac congue nunc. </p>
+         <p>
+          افراحنا يتيح خدمة جديدة تعود بفائدتها على الزبون قبل ادارة الصالة ، فكما نعلم انه يوجد قانون صارم بشأن الغاء الحجز واسترجاع قيمة العربون المدفوعة مهما كانت الظروف ، ومن هنا يمكنك عرض حجزك الملغي لإتاحته للبيع الى زبون اخر ففي خانة الحجوزات الملغية يمكنك فقط كتابة رقم الحجز الخاص بك ، ومن ثم موقع أفراحنا تلقائياً سيقوم بإحضار بيانات حجزك مثل اسمك وعنوانك ورقم هاتفك بالاضافة لتاريخ حجزك واسم القاعة الذي قمت بالحجز فيها ، وعرضها في خانة الحجوزات الملغية التي تتيح للمتصفح الإطّلاع على هذه الحجوزات والتواصل مع صاحب الحجز الملغي ، ولعرض الحجوزات الملغية ، اضغط هنا  .
+         </p>
          <div class="cl">&nbsp;</div>
-         <a href="#" class="more text-left">التعرف على المزيد</a> </div>
+         <a href="{{url('/canelReservation') }}" class="more text-left">اضغط هنا</a> </div>
         </div>     
         <div class="post">
           <h2 dir="rtl" > <b> قاعات الأفراح </b></h2>
           <img src="css/images/hall.jpg" style="width:300px;" alt="image" />
-          <p dir="rtl"> <b> من هنا يمكنك الاطلاع على قاعات الافراح ورؤية عروضنا..<a href="hall.php" class="more">التعرف على المزيد</a> </b></div>
+          <p dir="rtl"> <b> من هنا يمكنك الاطلاع على قاعات الافراح ورؤية عروضنا..<a href="{{url('/halls') }}" class="more">اضغط هنا</a> </b></div>
         </div>
     </div>
   </div>
   
 
   <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
-    © 2021 Copyright:
+    <p class="lf">Copyright &copy; 2020 <a href="#">أفـراحنـا</a> </p>
   </div>
 
 

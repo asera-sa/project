@@ -97,8 +97,8 @@
 
 
    <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
-    © 2021 Copyright:
-  </div>
+     <p class="lf">Copyright &copy; 2020 <a href="#">أفـراحنـا</a> </p>
+   </div>
 
 
 
