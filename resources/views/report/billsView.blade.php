@@ -13,13 +13,12 @@
     }
 </style>
         <!-- Main content -->
-        <section class="content" >
-            
+        <section class="content" >        
             <div class="card card-outline card-primary mt-5" id="print" dir="rtl">
                 <div class="card-header mt-5" >
-                   <h3 class="card-title">
-                    صالة {{$halls->name}} للمناسبات والأفراح             
-                </h3>
+                    <h3 class="card-title">
+                       صالة {{$halls->name}} للمناسبات والأفراح             
+                    </h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -83,7 +82,7 @@
                                                    }  
                                                    else 
                                                    {
-                                                    echo $reservation->occasions->st_fr_price;
+                                                    echo $reservation->occasions->st_fr_price+$sum;
                                                    }                                                   
                                             ?>
                                            </td>    
@@ -120,8 +119,7 @@
                         <i class="mdi mdi-printer ml-1"></i>
                         طباعة</button>                
                 </div>
-            </div>
-           
+            </div>          
         </section>
         <!-- End of Main content -->
     </div>
@@ -134,8 +132,8 @@
         var printContents = document.getElementById("print").innerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML=printContents;
-        console.log(printContents);
-        console.log(originalContents);
+        // console.log(printContents);
+        // console.log(originalContents);
         window.print();
         document.body.innerHTML=originalContents;
         location.reload();

@@ -27,7 +27,7 @@ class billsController extends Controller
         $servicesReservation = reservation::with('services')->where('id','=',$id)->first();
         $bills = bills::where('reservation_id','=',$id)->get();
 
-        $i = auth()->user()->halls_id ;
+      //  $i = auth()->user()->halls_id ;
         $halls = halls::where('id','=',$i)->first();
         //dd($bills);
         return view('bills.create')->with([

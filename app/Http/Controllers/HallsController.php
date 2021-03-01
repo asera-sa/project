@@ -50,13 +50,11 @@ class HallsController extends Controller
         $halls =new halls;
         $halls->name =request("name");
         if (request()->hasFile('file')) {
-            // File::delete($halls->file);
-            $img = request()->file('file');
-
-            $img_name = time() . '.' . $img->extension();
-            $img->move('uploads' , $img_name);
-            $halls->file = 'uploads/' .$img_name;
-
+           // File::delete($halls->file);
+           $img = request()->file('file');
+           $img_name = time() . '.' . $img->extension();
+           $img->move('uploads' , $img_name);
+           $halls->file = 'uploads/' .$img_name;
         };
         $halls->phone=request('phone');
         $halls->email=request('email');
@@ -65,19 +63,19 @@ class HallsController extends Controller
         $halls->state=1;
         $halls->lat=request('lat');
         $halls->lng=request('lng');
-         $halls->save();
-         $id=halls::max('id');
-         $user =new User;
-         $user->name =request("uname");
-         $user->halls_id=$id;
-         $user->email=request("uemail");
-         $user->password=bcrypt(request('upassword'));
-         $user->address=request('uaddress');
-         $user->phone=request('uphone');
-         $user->prive=1;
-         $user->save();
-         $halls = halls::find($id);  
-         return view('halls.show')->with([
+        $halls->save();
+        $id=halls::max('id');
+        $user =new User;
+        $user->name =request("uname");
+        $user->halls_id=$id;
+        $user->email=request("uemail");
+        $user->password=bcrypt(request('upassword'));
+        $user->address=request('uaddress');
+        $user->phone=request('uphone');
+        $user->prive=1;
+        $user->save();
+        $halls = halls::find($id);  
+        return view('halls.show')->with([
                  'halls'      => $halls ,
              ]);
         

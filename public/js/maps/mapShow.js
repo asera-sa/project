@@ -3,8 +3,6 @@
 // Class definition
 var KTLeaflet = function () {
 
-	
-
 	var demo5 = function () {
 		// Define Map Location
 		var leaflet = L.map('kt_leaflet_5', {
@@ -78,6 +76,7 @@ var KTLeaflet = function () {
 			demo5();
 		}
 	};
+	
 }();
 
 jQuery(document).ready(function () {

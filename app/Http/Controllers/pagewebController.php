@@ -150,9 +150,9 @@ class pagewebController extends Controller
     }
 
     public function sort(Request $request)
-    {
-      
+    {    
         $num =request("filter");
+       // dd($num);
      //   dd($num);
         if($num == 0)
         {
@@ -180,6 +180,7 @@ class pagewebController extends Controller
     }
     public function showhalls($id)//صفحة لقاعة
     {
+
         $halls =halls::find($id);
         $pic=pic::where('halls_id','=',$halls->id)->get();
         $occasions = occasions::with('halls')->where('halls_id','=',$id)->get();
@@ -203,11 +204,10 @@ class pagewebController extends Controller
     {
         $customer = customer::all();
         $occasions = occasions::all();
-       // $serviceshalls = halls::with('services')->where('id','=',$id)->first();
-     //   $services = services::with('halls')->where('halls_id','=',$id)->first();
+        // $serviceshalls = halls::with('services')->where('id','=',$id)->first();
+        //   $services = services::with('halls')->where('halls_id','=',$id)->first();
         $services = services::with('halls')->where('halls_id','=',$id)->get();
-
-     //   dd($services);
+       //   dd($services);
         return view('web.createRes')->with([
             'customer' => session()->get('customers.res'),
             'occasions' => $occasions,
@@ -286,7 +286,6 @@ class pagewebController extends Controller
                         // $index=>  هذا طبعا نفس متغير الي في فور اللي يبدا بصفر
                         $quantity = $quantities[$index]; // جلب الكميه بحسب الخدمه 
                         $price_c=$price[$index]*$quantity; 
-    
                         $id->services()->attach($value, ['quantity' => $quantity,'price' => $price_c]);
                     }
                 }

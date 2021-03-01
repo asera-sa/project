@@ -49,32 +49,7 @@
                            <li><a href="{{url('canelReservation')}}">  الحجوزات الملغية</a></li>
                            <li><a href="{{url('/contact')}}" > اتصل بنا</a></li>
                            <li><a href="{{url('/login')}}" > دخول </a></li>
-                           <li>
-                            <form action="{{ url('/halls') }}" id="form__search" method="post">
-                              @csrf
-                              <input class="form-control input__search" style="display: none;margin-top: 4px !important;" name="search" type="text" placeholder="Search">
-                            </form>
-
-                          </li>
-                          <li class="li__search">
-                            <a class="btn white btn__search show" href="{{ url('/halls') }}" >
-                              <i class="fas fa-search"></i>
-                            </a>
-                          </li>
-                          <li class="li__search">
-                            <form action="{{ url('/halls/sort') }}" id="form__filter" method="get">
-                              <select name="filter" class="form-control input__filter" style="display: none; margin-top: 4px !important">
-                                  <option value="0">فرز بالأعلى سعرا  </option>
-                                  <option value="1">فرز بالأقل سعرا  </option>
-                                  <option value="2"> حسب الاسم </option>
-                              </select>
-                            </form>
-                          </li>
-                          <li class="li__search">
-                            <a class="btn white btn__filter show" href="{{url('/halls/sort') }}">
-                              <i class="fas fa-filter"></i>
-                            </a>
-                          </li>
+                         
                       @else
                             <li><a href="{{url('/')}}"  >  الرئيسية </a></li>
                              <li><a href="{{url('/halls')}}"  class="active" > قاعات الأفراح</a></li>
@@ -84,37 +59,12 @@
                                <li><a href="{{url('/admin')}}" >لوحة التحكم </a></li>
                             @endif
                             @if(auth()->user()->prive == 2)
-                            <li><a href="{{url('/admin')}}" >لوحة التحكم </a></li>
-                             @endif
+                               <li><a href="{{url('/admin')}}" >لوحة التحكم </a></li>
+                            @endif
                             @if(auth()->user()->prive == 0)
                                 <li><a href="{{url('/admin/homeAdmin')}}" >لوحة التحكم </a></li>
                             @endif
-                            <li>
-                              <form action="{{ url('/halls') }}" id="form__search" method="post">
-                                @csrf
-                                <input class="form-control input__search" style="display: none;margin-top: 4px !important;" name="search" type="text" placeholder="Search">
-                              </form>
-                            </li>
-                            <li class="li__search">
-                              <a class="btn white btn__search show" href="{{ url('/halls') }}" >
-                                <i class="fas fa-search"></i>
-                              </a>
-                            </li>
-                            <li>
-                              <form action="{{url('/halls/sort')}}" id="form__filter" method="get">
-                                
-                                <select name="filter" class="form-control input__filter" style="display: none; margin-top: 4px !important">
-                                  <option value="0">فرز بالأعلى سعرا  </option>
-                                  <option value="1">فرز بالأقل سعرا  </option>
-                                  <option value="2"> حسب الاسم </option>
-                                </select>
-                              </form>
-                            </li>
-                            <li class="li__search">
-                              <a class="btn white btn__filter show" href="{{url('/halls/sort') }}" >
-                                <i class="fas fa-filter"></i>
-                              </a>
-                            </li>
+                        
                       @endguest  
                     </ul>  
                </div>
@@ -123,33 +73,36 @@
 
   </div>
 
- {{-- <div class="row">
-      <div class="col-md-2 col-md-offset-4 p-5" >
+ <div class="row">
+      <div class="col-md-3 col-md-offset-4 p-5" ></div>
+       <div class="col-md-3 col-md-offset-4"   >
+      
+          <form action="{{ url('/halls') }}" class="form-inline" id="form__search" method="post">
+            @csrf
+            <input class="form-control input__search" style="margin-top: 4px !important;" name="search" type="text" placeholder="Search">
+            <button class="btn my-2 my-sm-0 m-2 text-white " style="background-color: #c40083;" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+ 
+        </div>
+       <div class="col-md-4 col-md-offset-4 "   >
+  
+          <form action="{{url('/halls/sort')}}" id="form__filter" class="form-inline" method="get">                       
+            <select name="filter" class="form-control input__filter" style=" margin-top: 4px !important">
+              <option value="0">فرز بالأعلى سعرا  </option>
+              <option value="1">فرز بالأقل سعرا  </option>
+              <option value="2"> حسب الاسم </option>
+            </select>
+            <button class="btn  my-2 my-sm-0 m-2 text-white btn__filter" style="background-color: #c40083;" type="submit">
+              <i class="fas fa-filter"></i>
+            </button>
+          </form>
+              
       </div>
-      <div class="col-md-5 col-md-offset-4" >
-        <form class="form-inline" action="{{url('/halls')}}" method="POST">
-          @csrf
-        
-            <input class="form-control mr-sm-2 input__search" style="display: none;" name="search" type="text" placeholder="Search">      
-                <button class="btn my-2 my-sm-0 m-2 text-white btn__search" style="background-color: #c40083;" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-        
-        </form>
-      </div>
-      <div class="col-md-5 col-md-offset-4" >
-        <form class="form-inline" action="{{url('/halls')}}" method="POST">
-          @csrf
-          <select name=""  class="form-control mr-sm-2 input__filter" style="display: none">
-            <option value="">فرز بالأعلى سعرا  </option>
-            <option value="">فرز بالأقل سعرا  </option>
-          </select>
-              <button class="btn  my-2 my-sm-0 m-2 text-white btn__filter" style="background-color: #c40083;" type="submit">
-                <i class="fas fa-filter"></i>
-              </button>
-        </form>
-      </div>
- </div> --}}
+ </div>
+
+   <hr>
 
   <div class="container" dir="rtl" class="text-right" >
   
@@ -223,6 +176,7 @@
         </div>
   </div>
 
+  
   <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
     <p class="lf">Copyright &copy; 2020 <a href="#">أفـراحنـا</a> </p>
   </div>

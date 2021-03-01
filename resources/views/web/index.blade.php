@@ -25,6 +25,7 @@
     </style>
 </head>
 <body dir="rtl">  
+
   <div id="header">
           <img src="{{asset('css/images/logo.jpg')}}"  style="width:20rem; height:4rem; margin-top:2rem; margin-left:8rem;"  alt="">
           <nav id="navigation"  class="navbar navbar-expand-lg navbar-light ">
@@ -64,7 +65,7 @@
           </nav>
   </div>
   
-  <div class="container mt-5" dir="rtl" class="text-right" >
+  <div class="container mt-5" dir="rtl" class="text-right">
     <div class="row shell" >        
             <div class="slider-right">
               <div id="carouselExampleControls" class="carousel slide w-100 p-3" data-ride="carousel">
@@ -94,13 +95,12 @@
               <p>
                 يعرض الموقع خريطة توضح موقع الصالة , بالإضافة لوجود مساحة خاصة بالإعلانات وعرض الحجوزات الملغية من قبل الزبائن , كما ان هذا البرنامج يستخدم لإدارة قاعات الافراح بطريقة سهلة وسلسة الاستخدام, حيث  يمكن استخدامه من أي جهاز 
               </p>
-              <a href="{{url('/createhalls') }}" class="order-now "> <b> تسجيل الان</b></a> 
+              <a href="{{url('/login') }}" class="order-now "> <b> تسجيل الان</b></a> 
             </div>
     </div>
   </div>
-     
-
-  <div class="container mt-5" dir="rtl" class="text-right" >
+   
+  <div class="container mt-5" dir="rtl" class="text-right">
       <div class="row text-right">
         <div class="col-md-7 last">
           <div class="post">
@@ -120,7 +120,8 @@
             
       </div>
   </div>
-  <div class="container mt-5" dir="rtl" class="text-right" >
+
+  <div class="container mt-5" dir="rtl" class="text-right">
     <div class="row text-right">
       <div class="col-md-3 last">
         <div class="post">
@@ -129,7 +130,7 @@
             <p>
             	سهولة استخدام تطبيقنا سوف يوفر عليك الكثير من الوقت والجهد ويجعلك تصل الى صالتك المفضلة في اسرع وقت
             </p>
-          <a href="#" class="more text-left left"> </a>
+            <a href="#" class="more text-left left"> </a>
           <div class="cl">&nbsp;</div>
         </div>
       </div>
@@ -148,16 +149,12 @@
           <img src="css/images/hall.jpg" style="width:300px;" alt="image" />
           <p dir="rtl"> <b> من هنا يمكنك الاطلاع على قاعات الافراح ورؤية عروضنا..<a href="{{url('/halls') }}" class="more">اضغط هنا</a> </b></div>
         </div>
-    </div>
-  </div>
-  
+     </div>
+  </div>  
 
   <div class="text-center p-3 mt-5" style="background-color: rgba(220, 227, 230, 0.829)">
     <p class="lf">Copyright &copy; 2020 <a href="#">أفـراحنـا</a> </p>
   </div>
-
-
-
 
   <script src="js/jquery-1.4.2.js" type="text/javascript"></script>
   <script src="js/jquery.jcarousel.js" type="text/javascript"></script>
@@ -167,11 +164,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script>
-
-  $('.carousel').carousel({
-    interval: 2000
-  })
-  
+      $('.carousel').carousel({
+         interval: 2000
+      })
   </script>
+  
 </body>
 </html>
