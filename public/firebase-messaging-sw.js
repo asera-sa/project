@@ -7,6 +7,7 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.5/firebase-messaging.js');
 // Initialize the Firebase app in the service worker by passing in
 // your app's Firebase config object.
 // https://firebase.google.com/docs/web/setup#config-object
+// app لما يكون مش فاتح ال 
 firebase.initializeApp({
     apiKey: "AIzaSyBDv7ggQLtei3hWFwIA-71YCv6ti7nCGMQ",
     authDomain: "project2020-bf07f.firebaseapp.com",
@@ -18,9 +19,9 @@ firebase.initializeApp({
 });
 
 const messagingSW = firebase.messaging();
-messagingSW.setBackgroundMessageHandler(function(payload) {
-    console.log('[firebase-messaging-sw.js] Received background message ', payload);
-    const {title, body} = payload.notification;
+messagingSW.setBackgroundMessageHandler(function(data) {
+    console.log('[firebase-messaging-sw.js] Received background message ', data);
+    const {title, body} = data.notification;
     const notificationOptions = {
         body
     };

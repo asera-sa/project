@@ -20,7 +20,7 @@ class HallsDataController extends Controller
     {
         $id=auth()->user()->halls_id;
         // $serviceshalls = halls::with('services')->where('id','=',$id)->first();
-        $services=services::where('halls_id','=',$id)->get();
+        $services=services::where('halls_id','=',$id)->orderby('created_at','DESC')->get();
         return view('hallsData.hallsServices')->with([
              'services' => $services,
             //  'serviceshalls' => $serviceshalls,
@@ -67,7 +67,7 @@ class HallsDataController extends Controller
     public function indexO()
     {
         $id=auth()->user()->halls_id;
-        $occasions = occasions::with('halls')->where('halls_id','=',$id)->get();
+        $occasions = occasions::with('halls')->where('halls_id','=',$id)->orderby('created_at','DESC')->get();
         return view('hallsData.hallOccasions')->with([
             'occasions' => $occasions,
         ]);
@@ -108,7 +108,7 @@ class HallsDataController extends Controller
     public function indexJ()
     {
         $id=auth()->user()->halls_id;
-        $jobs = jobs::with('halls')->where('halls_id','=',$id)->get();
+        $jobs = jobs::with('halls')->where('halls_id','=',$id)->orderby('created_at','DESC')->get();
         return view('hallsData.halljobs')->with([
             'jobs' => $jobs,
         ]);

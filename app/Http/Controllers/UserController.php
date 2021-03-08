@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $id = auth()->user()->halls_id ;
-        $user = User::with('halls')->orderby('prive','ASC')->where('halls_id','=',$id)->get();
+        $user = User::with('halls')->orderby('prive','ASC')->where('halls_id','=',$id)->orderby('created_at','DESC')->get();
         return view('users.index')->with([
             'user' => $user,
            ]);

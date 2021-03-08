@@ -33,7 +33,7 @@
 		};
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
-		firebase.analytics();
+		//firebase.analytics(); // 
 	</script>
 	<body class="main-body app sidebar-mini">
 		@include('sweetalert::alert')
@@ -78,12 +78,12 @@
 					function retrieveToken() {
 
 						messaging.getToken().then((currentToken) => {
-						if (currentToken) {
-							sendTokenToUser(currentToken);
-						} else {
-							// Show permission request UI
-							console.log('No registration token available. Request permission to generate one.');
-						}
+							if (currentToken) {
+								sendTokenToUser(currentToken);
+							} else {
+								// Show permission request UI
+								console.log('No registration token available. Request permission to generate one.');
+							}
 						}).catch((err) => {
 							console.log('An error occurred while retrieving token. ', err);
 						});
@@ -98,6 +98,7 @@
 					});
 
 					// عند إستقبال الرساله 
+					// app لما يكون فاتح ال 
 					// Send notificaion in website
 					messaging.onMessage((payload) => {
 						// alert(payload.notification.body);

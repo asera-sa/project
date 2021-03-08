@@ -97,21 +97,22 @@ class pagewebController extends Controller
     // Send notifications to user
     private function boradcastNotify($title, $body, $tokens)
     {
+        // composer require brozot/laravel-fcm
         $optionBuilder = new OptionsBuilder();
-        $optionBuilder->setTimeToLive(60*20);
+        $optionBuilder->setTimeToLive(2419200);
 
         $notificationBuilder = new PayloadNotificationBuilder($title);
         $notificationBuilder->setBody($body)
                     ->setSound('default');
 
-        $dataBuilder = new PayloadDataBuilder();
-        $dataBuilder->addData(['title' => $title,'body' => $body]);
+        // $dataBuilder = new PayloadDataBuilder();
+        // $dataBuilder->addData(['title' => $title,'body' => 'تجريبي']);
 
         $option = $optionBuilder->build();
         $notification = $notificationBuilder->build();
-        $data = $dataBuilder->build();
+        // $data = $dataBuilder->build();
 
-        $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
+        $downstreamResponse = FCM::sendTo($tokens, $option, $notification);
 
         return $downstreamResponse->numberSuccess();
     }

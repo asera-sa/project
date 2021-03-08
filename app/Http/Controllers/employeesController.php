@@ -20,7 +20,7 @@ class employeesController extends Controller
     public function index()
     {
         $id = auth()->user()->halls_id ;
-        $employees = employees::with('jobs')->where('halls_id','=',$id)->get();
+        $employees = employees::with('jobs')->where('halls_id','=',$id)->orderby('created_at','DESC')->get();
         return view('employee.index')->with([
             'employees' => $employees,
         ]);

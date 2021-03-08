@@ -17,7 +17,7 @@ class newsController extends Controller
     public function index()
     {
         $id=auth()->user()->halls_id;
-        $news=news::where('halls_id','=',$id)->paginate(10);
+        $news=news::where('halls_id','=',$id)->orderby('created_at','DESC')->paginate(10);
         return view('news.index')->with([
             'news' => $news,
         ]);
@@ -59,7 +59,7 @@ class newsController extends Controller
     public function pic()
     {
         $id=auth()->user()->halls_id;
-        $pic = pic::where('halls_id','=',$id)->get();
+        $pic = pic::where('halls_id','=',$id)->orderby('created_at','DESC')->get();
         return view('news.pic')->with([
             'pic' => $pic,
         ]);
@@ -90,7 +90,7 @@ class newsController extends Controller
              $pic->save();
      
      
-             $pic = pic::where('halls_id','=',$id)->get();
+             $pic = pic::where('halls_id','=',$id)->orderby('created_at','DESC')->get();
              return view('news.pic')->with([
                  'pic' => $pic,
              ]);

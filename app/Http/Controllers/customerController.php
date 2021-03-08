@@ -17,7 +17,7 @@ class customerController extends Controller
     
     public function index()
     {
-        $customer = customer::all();
+        $customer = customer::orderby('created_at','DESC')->get();
       //  dd($customer);
       
         return view('customer.index')->with([

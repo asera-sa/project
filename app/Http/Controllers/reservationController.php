@@ -22,7 +22,7 @@ class reservationController extends Controller
         // now()->subDays(3) ينقص 3 ايام ع اليوم
 
         $id = auth()->user()->halls_id ;
-        $reservation = reservation::with('customer')->where('halls_id','=',$id)->where('flag','!=',2)->get();
+        $reservation = reservation::with('customer')->where('halls_id','=',$id)->where('flag','!=',2)->orderby('created_at','DESC')->get();
         return view('reservation.index')->with([
             'reservation' => $reservation,
         ]);
@@ -30,8 +30,9 @@ class reservationController extends Controller
 
     public function create()
     {
+        $i=auth()->user()->halls_id;
         $customer = customer::all();
-        $occasions = occasions::all();
+        $occasions = occasions::where('halls_id','=',$i)->get();
 
         $id=auth()->user()->halls_id;
         $services = services::with('halls')->where('halls_id','=',$id)->get();
@@ -88,7 +89,6 @@ class reservationController extends Controller
                     // $index=>  هذا طبعا نفس متغير الي في فور اللي يبدا بصفر
                     $quantity = $quantities[$index]; // جلب الكميه بحسب الخدمه 
                     $price_c=$price[$index]*$quantity; 
-
                     $id->services()->attach($value, ['quantity' => $quantity,'price' => $price_c]);
                 }
             }

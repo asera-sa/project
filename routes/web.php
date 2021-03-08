@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Http\Request;
 
     route::group(['prefix' => 'admin','middleware' => 'auth'],function()
